@@ -12,6 +12,7 @@ export class CommonService {
   private api = "https://your_api_url.com";
 
   baseUrl = environment.baseUrl;
+  oldBaseUrl1 = environment.oldBaseUrl1;
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -28,7 +29,7 @@ export class CommonService {
   // Get All media cost service 
 
   get_AllMediaCost_Service(){
-    return this.httpClient.get(`${this.baseUrl}/system/media/cost`);
+    return this.httpClient.get(`${this.oldBaseUrl1}/system/media/cost`);
   }
 
 }

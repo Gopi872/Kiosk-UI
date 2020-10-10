@@ -31,7 +31,7 @@ export class PrintPcComponent implements OnInit {
   targetPrinter:[];
   workType;
   constructor( private modalService: BsModalService,private PrintserviceService:PrintserviceService,private commonService: CommonService) { 
-    this.workType = '1201';
+    this.workType = 1201;
   }  
 
   ngOnInit() {
