@@ -29,7 +29,10 @@ export class PrintPcComponent implements OnInit {
   paymentDue:any=0;
   pinNumber:any;
   targetPrinter:[];
-  constructor( private modalService: BsModalService,private PrintserviceService:PrintserviceService,private commonService: CommonService) { }  
+  workType;
+  constructor( private modalService: BsModalService,private PrintserviceService:PrintserviceService,private commonService: CommonService) { 
+    this.workType = '1201';
+  }  
 
   ngOnInit() {
     this.fetchListPrintingJobwithCostInfo();
@@ -44,7 +47,7 @@ export class PrintPcComponent implements OnInit {
    }
     this.PrintserviceService.fetchListPrintingJobwithCostInfo(data).subscribe((data:any)=>{
        console.log("data",data)
-       this.waitingList=data.data;
+       //this.waitingList=data.data;
        console.log("data-----------------",this.waitingList);
     })
   }
@@ -55,54 +58,7 @@ export class PrintPcComponent implements OnInit {
     this.commonService.get_AllMediaCost_Service().subscribe(
       (data:any) =>{
         console.log("Get media cost data");
-        // console.log(data);
-
-        // for (let i = 0; i < this.waitingList.length; i++) {
-        //   for (let j = 0; j < data.data.length; j++) {
-        //     const element = array[j];
-            
-        //   }
-        // }
-
-
-        // this.all_media_cost = data.data;
-        data.data.forEach(element => {
-            console.log(element);
-            if(element.workType == '1201') {
-              if (element.color == 0 && element.mediaSizeName == 'A4') {
-                  let cost1 = {
-                    "cost_clr_0_A4": element.cost,
-                    "workType":element.workType
-                  }
-                this.all_media_cost.push(cost1);
-              }
-              if (element.color == 1 && element.mediaSizeName == 'A4') {
-                let cost2 = {
-                  "cost_clr_1_A4": element.cost,
-                  "workType":element.workType
-                }
-                this.all_media_cost.push(cost2);
-              }
-              if (element.color == 0 && element.mediaSizeName == 'A3') {
-                let cost3 = {
-                  "cost_clr_0_A3": element.cost,
-                  "workType":element.workType
-                }
-                this.all_media_cost.push(cost3);
-              }
-              if (element.color == 1 && element.mediaSizeName == 'A3') {
-                let cost4 = {
-                  "cost_clr_1_A3": element.cost,
-                  "workType":element.workType
-                }
-                this.all_media_cost.push(cost4);
-              }
-            }
-
-          });
-
-          console.log(this.all_media_cost);
-
+        this.all_media_cost = data.data;
         },
         (error:any)=>{
           console.log(error);
@@ -156,7 +112,18 @@ export class PrintPcComponent implements OnInit {
     this.PrintserviceService.fetchJobByPin(this.pinNumber).subscribe((data:any)=>{
       console.log("data",data);
       this.waitingList = data;
+      this.updateWaitingList();
     })
+  }
+
+  updateWaitingList(){
+    this.waitingList.forEach(element => {
+      const colorCode = (element.attributes.color == 'COLOR') ? 1 : 0 ;
+      const finalMediaType: any = this.all_media_cost.filter((media: any) => {
+        return media.workType === this.workType && media.mediaSizeName === element.attributes.pageFormat && media.color === colorCode;
+      });
+      element.attributes.amount = finalMediaType[0].cost;
+    });
   }
 
   startModalWithClass(start: TemplateRef<any>) {  

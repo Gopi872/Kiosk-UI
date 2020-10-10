@@ -60,21 +60,13 @@
                         <ng-container>   -->
                         <ng-container *ngFor="let list of waitingList">
 
-                            <tr  *ngFor="let getCost of all_media_cost">
+                            <tr>
                                 <td><input type="checkbox" class="chckStyle" (change)="onCheckboxChange($event,list)"></td>
                                 <td>{{list.createdDate |date: 'd/M/y'}}</td>
                                 <td>{{list.jobName}}</td>
                                 <td>{{list.attributes.color}}</td>
                                 <td>{{list.attributes.copies}}</td>
-                                <td>
-                                    <!-- {{getCost.cost_clr_0_A4}} -->
-                                    <!-- {{list.attributes.color == 0 ? 'Mr' : 'Ms'}} -->
-                                    <!-- {{(list.attributes.color == 0 && list.attributes.pageFormat == 'A4') ? getCost.cost_clr_0_A4: ''}} -->
-                                    <span *ngIf="list.attributes.color == 'COLOR' && list.attributes.pageFormat == 'A4'">{{getCost.cost_clr_0_A4}}</span>
-                                    <span *ngIf="list.attributes.color == 'MONO' && list.attributes.pageFormat == 'A4'">{{getCost.cost_clr_1_A4}}</span>
-                                    <span *ngIf="list.attributes.color == 'COLOR' && list.attributes.pageFormat == 'A3'">{{getCost.cost_clr_0_A3}}</span>
-                                    <span *ngIf="list.attributes.color == 'MONO' && list.attributes.pageFormat == 'A3'">{{getCost.cost_clr_1_A3}}</span>
-                                </td>
+                                <td>{{list.attributes.amount}}</td>
                                 <td>{{list.attributes.pageFormat}}</td>    
                             </tr>
                         </ng-container>
