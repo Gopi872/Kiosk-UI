@@ -1,0 +1,154 @@
+<nav class="navbar-light bg-nav-color">
+    <p class="nav-title-color">Print Cloud</p>
+</nav>
+<div class="container box">
+    <div class="d-flex justify-content-end">
+        <div class="row">
+            <div class="p-2 bd-highlight">
+                <a [routerLink]="['/home']">
+                    <button class="simple-button" type="submit"><i class="fas fa-home"></i>
+                        &nbsp;
+                        Home</button>
+                </a>
+            </div>
+            <div class="p-2 bd-highlight"><button class="simple-button" type="submit" style="margin-right: 20px;"><i
+                        class="fas fa-redo"></i> &nbsp;
+                    Bring Back</button></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-lg-8 col-md-8 col-xl-8">
+            <label class="big-label">Mobile Number</label>
+            <div class="row">
+                <div class="col-sm-12 col-lg-6 col-xl-6">
+                    <input type="text" placeholder="0111215142" name="" id="">
+                </div>
+                <div class="col-sm-12 col-lg-3 col-xl-3">
+                    <button class="dark-button" type="submit">Go</button>
+                </div>
+                <div class="col-sm-12 col-lg-3 col-xl-3">
+                    <button class="dark-button" type="submit">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 50px; margin-bottom: 10px;">
+        <div class="col-sm-12 col-lg-8 col-md-8 col-xl-8">
+            <label class="big-label">Waiting List</label>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr style="background-color: white;">
+                            <th scope="col">Date</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Color</th>
+                            <th scope="col">Page</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Size</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2019.11.14</td>
+                            <td>Name</td>
+                            <td>Mono</td>
+                            <td>3</td>
+                            <td>1</td>
+                            <td>A4</td>
+                        </tr>
+                        <tr>
+                            <td>2019.11.14</td>
+                            <td>Name</td>
+                            <td>Mono</td>
+                            <td>3</td>
+                            <td>1</td>
+                            <td>A4</td>
+                        </tr>
+                      
+                    </tbody>
+                </table>
+            </div>
+            
+            <select class="form-control form-control-lg">
+                <option>Select Target Printer</option>
+                <option *ngFor="let opt of targetPrinter" [value]="opt.name">{{opt.name}}</option>
+            </select>
+        </div>
+
+        <div class="col-sm-12 col-md-4 col-xl-4 col-lg-4">
+            <div class="container">
+                <div class="payment-margin-left">
+                    <label class="big-label">No. of Jobs</label><br>
+                    <div class="wrapper">
+                        <input type="text" name="jobs" class="payment-text" id="jobs_selected">
+                    </div>
+                    <label class="big-label">Copies</label>
+                    <input type="text" [value]="quantity" name="CopyCount" id="CopyCount" style="text-align:right;">
+                    <br><br>
+                    <img src="../../../../assets/ui/Icon/button_+.png" (click)="plus()" id="AddButton"
+                        style="max-height:95px; max-width:95px" /><img src="../../../../assets/ui/Icon/button_-.png"
+                        (click)="minus()" id="SubButton" style="max-height:95px; max-width:95px; margin-left:60px;"
+                        alt="" srcset="">
+
+                    <br>
+                    <label class="big-label payment">Payment Due</label>
+                    <div class="wrapper">
+                        <label class="dollar">$</label>
+                        <input type="text" name="payment" class="payment-text" id="">
+                    </div>
+                    <br>
+                    <img class="mx-auto d-block" height="200px" width="200px" (click)="startModalWithClass(start)" style="margin-top: 25px;"
+                        src="../../../../assets/ui/customized/Start button.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Start Modal -->
+<ng-template #start>
+    <nav class="navbar-light bg-modal-color">
+        <span type="button" style="cursor: pointer;" class="pull-left" (click)="modalRef.hide()">  
+            <span aria-hidden="true" class="return-arrow"><i class="fas fa-arrow-left"></i></span>  
+        </span>
+        <p class="nav-title-color">Payment</p>
+    </nav>
+    <div class="modal-body">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-4">
+                    <p class="p-bold">Total Price: $ xxxxxx</p> 
+                </div>
+                <div class="col-4">
+                    <p class="p-bold">1 Page,mono,A4</p>
+                </div>
+              </div>
+            <hr>
+            <div class="row" style="justify-content: center;">
+                <p class="p-bold">Please choose pay option and press go button for pay, if you want to keep going.</p>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
+                    <img src="../../../assets/ui/Icon/Cash button.png" class="img-fluid" alt="" srcset="">
+                </div>
+                <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
+                    <img src="../../../assets/ui/Icon/Card button.png" class="img-fluid" alt="" srcset="">
+                </div>
+                <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
+                    <img src="../../../assets/ui/Icon/Card for copy button.png" class="img-fluid" alt="" srcset="">
+                </div>
+                <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
+                    <img src="../../../assets/ui/Icon/membership button.png" class="img-fluid" alt="" srcset="">
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+    <div class="modal-footer" style="justify-content: center;">
+        <button type="button" class="simple-button" (click)="modalRef.hide()">Cancel</button>
+        <button type="button" class="simple-button">Go</button>
+    </div>
+</ng-template>

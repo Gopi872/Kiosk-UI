@@ -1,0 +1,222 @@
+<nav class="navbar-light bg-nav-color">
+    <p class="nav-title-color">Scan USB</p>
+</nav>
+<div class="container box">
+    <div class="d-flex justify-content-end">
+        <div class="row">
+            <div class="p-2 bd-highlight">
+                <a [routerLink]="['/home']">
+                    <button class="simple-button" type="submit" style=""><i class="fas fa-home"></i>
+                        &nbsp;
+                        Home</button>
+                </a>
+            </div>
+            <div class="p-2 bd-highlight"><button class="simple-button" type="submit"><i class="fas fa-redo"></i> &nbsp;
+                    Bring Back</button></div>
+        </div>
+    </div>
+
+    <!-- Master Row -->
+    <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
+        <!-- Half Left -->
+        <div class="col-sm-12 col-lg-6 col-md-6 col-xl-6">
+            <label class="big-label">File Name</label>
+            <div class="row">
+                <div class="col-sm-6 col-lg-12 col-xl-12">
+                    <input type="text" placeholder="untitled_1242" name="" id="">
+                </div>
+            </div>
+            <br>
+
+            <label class="big-label">Choose Print Option</label>
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <label class="small-label">Color</label>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                            <input id="color" checked class="radio-custom" name="colour" type="radio" (change)="onColorChange('Color')">
+                            <label for="color" class="radio-custom-label radio-pic one">Color</label>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                            <input id="mono" class="radio-custom" name="colour" type="radio" (change)="onColorChange('Mono')">
+                            <label for="mono" class="radio-custom-label radio-pic two">Mono</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <label class="small-label">Paper</label>
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-6 col-xl-6">
+                            <input id="radio-3" checked class="radio-custom" name="radio-group2" type="radio" (change)="onPaperChange('A4')">
+                            <label for="radio-3" class="radio-custom-label">A4</label>
+                        </div>
+                        <div class="col-sm-12 col-lg-6 col-xl-6">
+                            <input id="radio-4" class="radio-custom" name="radio-group2" type="radio" (change)="onPaperChange('A3')">
+                            <label for="radio-4" class="radio-custom-label">A3</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input id="radio-5" class="radio-custom" name="radio-group2" type="radio" (change)="onPaperChange('B4')">
+                            <label for="radio-5" class="radio-custom-label">B4</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input id="radio-6" class="radio-custom" name="radio-group2" type="radio" (change)="onPaperChange('B5')">
+                            <label for="radio-6" class="radio-custom-label">B5</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <label class="big-label">Direction</label>
+            <div class="row">
+                <div class="col-sm-12 col-lg-3 col-md-3 col-xl-3">
+                    <input id="vertical" checked class="radio-custom" name="direction" type="radio" (change)="onDirectionChange('Vertical')">
+                    <label for="vertical" class="radio-custom-label radio-pic vertical">Vertical</label>
+                </div>
+                <div class="col-sm-12 col-lg-3 col-md-3 col-xl-3">
+                    <input id="horizontal" class="radio-custom" name="direction" type="radio" (change)="onDirectionChange('Horizontal')">
+                    <label for="horizontal" class="radio-custom-label radio-pic horizontal">Horizontal</label>
+                </div>
+            </div>
+
+            <label class="small-label">Resolution</label>
+            <div class="row">
+                <div class="col-sm-12 col-lg-12 col-md-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-6 col-md-6 col-xl-6">
+                            <input id="radio-9" checked class="radio-custom" name="radio-group5" type="radio" (change)="onResolutionChange('100dpi')">
+                            <label for="radio-9" class="radio-custom-label">100dpi</label>
+                        </div>
+                        <div class="col-sm-12 col-lg-6 col-md-6 col-xl-6">
+                            <input id="radio-10" class="radio-custom" name="radio-group5" type="radio" (change)="onResolutionChange('200dpi')">
+                            <label for="radio-10" class="radio-custom-label">200dpi</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-lg-12 col-md-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-6 col-md-6 col-xl-6">
+                            <input id="radio-11" class="radio-custom" name="radio-group5" type="radio" (change)="onResolutionChange('300dpi')">
+                            <label for="radio-11" class="radio-custom-label">300dpi</label>
+                        </div>
+                        <div class="col-sm-12 col-lg-6 col-md-6 col-xl-6">
+                            <input id="radio-12" class="radio-custom" name="radio-group5" type="radio" (change)="onResolutionChange('400dpi')">
+                            <label for="radio-12" class="radio-custom-label">400dpi</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Half Right -->
+        <div class="col-sm-12 col-lg-6 col-xl-6">
+            <label class="big-label">Preview</label>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div *ngIf="selectedScanUsbImgs?.length > 0">
+                        <img #previewImg class="preview-image" src="http://storage.myepsoft.com:53335/kioskapi/{{selectedScanUsbImgs[0]}}" id="preview-image" >
+                    </div>
+                </div>
+                <div class="col-sm-6 payment">
+                    <label class="big-label">Payment Due</label>
+                    <div class="wrapper">
+                        <label class="dollar">$</label>
+                        <input type="text" name="payment" class="payment-text" id="" [value]="paymentDue">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12 col-lg-6 col-xl-6">
+                    <label class="small-label">File</label><br>
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-6 col-xl-6">
+                            <input id="radio-13" checked class="radio-custom" name="radio-group6" type="radio" (change)="onFileChange('PDF')">
+                            <label for="radio-13" class="radio-custom-label">PDF</label>
+                        </div>
+
+                        <div class="col-sm-12 col-lg-6 col-xl-6">
+                            <input id="radio-14" class="radio-custom" name="radio-group6" type="radio" (change)="onFileChange('TIFF')">
+                            <label for="radio-14" class="radio-custom-label">TIFF</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-6 col-xl-6">
+                            <input id="radio-15" class="radio-custom" name="radio-group6" type="radio" (change)="onFileChange('JPEG')">
+                            <label for="radio-15" class="radio-custom-label">JPEG</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-8 col-xl-8">
+                            <button class="simple-button" style="margin-left: 5px;"><i class="fas fa-cog"></i>
+                                &nbsp; Settings</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-12 col-lg-6 col-xl-6 start">
+                    <img class="mx-auto d-block" height="200px" width="200px"  (click)="startModalWithClass(start)"
+                        src="../../../../assets/ui/customized/Start button.png" />
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<!--Start Modal -->
+<ng-template #start>
+    <nav class="navbar-light bg-modal-color">
+        <span type="button" style="cursor: pointer;" class="pull-left" (click)="modalRef.hide()">  
+            <span aria-hidden="true" class="return-arrow"><i class="fas fa-arrow-left"></i></span>  
+        </span>
+        <p class="nav-title-color">Payment</p>
+    </nav>
+    <div class="modal-body">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-4">
+                    <p class="p-bold">Total Price: $ {{paymentDue}}</p> 
+                </div>
+                <div class="col-4">
+                    <p class="p-bold">1 Page,mono,A4</p>
+                </div>
+              </div>
+            <hr>
+            <div class="row" style="justify-content: center;">
+                <p class="p-bold">Please choose pay option and press go button for pay, if you want to keep going.</p>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
+                    <img src="../../../assets/ui/Icon/Cash button.png" class="img-fluid" alt="" srcset="">
+                </div>
+                <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
+                    <img src="../../../assets/ui/Icon/Card button.png" class="img-fluid" alt="" srcset="">
+                </div>
+                <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
+                    <img src="../../../assets/ui/Icon/Card for copy button.png" class="img-fluid" alt="" srcset="">
+                </div>
+                <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
+                    <img src="../../../assets/ui/Icon/membership button.png" class="img-fluid" alt="" srcset="">
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+    <div class="modal-footer" style="justify-content: center;">
+        <button type="button" class="simple-button" (click)="modalRef.hide()">Cancel</button>
+        <button type="button" class="simple-button" (click)="scanUsbGo()">Go</button>
+    </div>
+</ng-template>

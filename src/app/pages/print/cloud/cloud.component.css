@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.box{
+    margin-top: 10px;
+}
+
+.big-label{
+  font-family: 'Roboto', sans-serif;
+  font-size: 25px;
+}
+
+.simple-button{
+  background-color: aliceblue;
+  border: 0px;
+  padding: 10px;
+  width:200px;
+  cursor: pointer;
+}
+
+.dark-button{
+  background-color: #34495E;
+  border: 0px;
+  padding: 10px;
+  width:100%;
+  color:white;
+  float: right;
+  width: 150px;
+}
+
+.delete{
+    margin-top: 20px;
+}
+
+input[type=text]{
+  border-style: solid;
+  border-color:#bdc3c7;
+  width: 100%;
+  padding: 10px;
+}
+.table-responsive{
+  max-height: 400px;
+  border: solid 1px;
+  overflow: scroll;
+}
+/* For scroll style */
+
+::-webkit-scrollbar {
+  width: 15px;
+  background-color:#BDBDBD;
+}
+
+::-webkit-scrollbar-track {
+   background-color:#BDBDBD ;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+background-color: #34495E;
+  border-radius: 10px;
+   
+}
+tr:nth-child(even) { 
+  background-color:#FFFFFF; 
+  min-height: 30px;
+}
+tr:nth-child(odd) { 
+  background-color:#ECF9FF; 
+  min-height: 30px;
+} 
+.payment{
+  margin-top: 15px;
+}
+  @media only screen and (min-width: 900px) {
+    .payment-margin-left{
+      margin-left: 70px;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .payment{
+      margin-top: 10px;
+    }
+    .payment-margin-left{
+      margin-left: 0px;
+    }
+  }
+
+  .dollar{
+    position: absolute;
+    padding: 10px;
+  }
+  
+  .payment-text{
+    text-align:right;
+  }

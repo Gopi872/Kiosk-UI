@@ -1,0 +1,301 @@
+<nav class="navbar-light bg-nav-color">
+  <p class="nav-title-color">Copy</p>
+</nav>
+<div class="container box">
+  <div class="d-flex justify-content-end">
+    <div class="row">
+      <a [routerLink]="['/home']">
+        <div class="p-2 bd-highlight">
+          <button class="simple-button" type="submit" style="">
+            <i class="fas fa-home"></i> &nbsp;
+            Home
+          </button>
+        </div>
+      </a>
+      <div class="p-2 bd-highlight">
+        <button class="simple-button" type="submit">
+          <i class="fas fa-redo"></i> &nbsp;
+          Bring Back
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
+    <div class="col-sm-12 col-lg-6 col-md-6 col-xl-6">
+      <select class="form-control form-control-lg">
+        <option>Select Target Printer</option>
+      </select>
+      <label class="big-label">Choose Copy Option</label>
+      <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <input id="document_copy" class="radio-custom" [checked]="isDocument"
+                 name="radiodoc" type="radio" [(ngModel)]="isDocument"
+                 (change)="CheckDocumentType('doc',$event)">
+          <label for="document_copy" class="radio-custom-label">
+            Document Copy
+          </label>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <input id="id_card" class="radio-custom" [checked]="isIdCard"
+                 name="radiodoc" [(ngModel)]="isIdCard"
+                 (change)="CheckDocumentType('idcard',$event)"
+                 type="radio" [value]="0">
+          <label for="id_card" class="radio-custom-label">ID Card</label>
+        </div>
+      </div>
+      <div *ngIf="isDocCopy==true">
+        <label class="big-label">Choose Print Option</label>
+        <div class="row">
+          <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <label class="small-label">Color</label>
+            <div class="row">
+              <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <input id="color" checked class="radio-custom" name="radio-group2" type="radio">
+                <label for="color" class="radio-custom-label radio-pic one">Color</label>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <input id="mono" class="radio-custom" name="radio-group2" type="radio">
+                <label for="mono" class="radio-custom-label radio-pic two">Mono</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <label class="small-label">Paper</label>
+            <div class="row">
+              <div class="col-sm-12 col-lg-6 col-xl-6">
+                <input id="A4" checked class="radio-custom" name="radio-group" type="radio">
+                <label for="A4" class="radio-custom-label">A4</label>
+              </div>
+              <div class="col-sm-12 col-lg-6 col-xl-6">
+                <input id="A3" class="radio-custom" name="radio-group" type="radio">
+                <label for="A3" class="radio-custom-label">A3</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <input id="B4" class="radio-custom" name="radio-group" type="radio">
+                <label for="B4" class="radio-custom-label">B4</label>
+              </div>
+              <div class="col-sm-6">
+                <input id="B5" class="radio-custom" name="radio-group" type="radio">
+                <label for="B5" class="radio-custom-label">B5</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <label class="big-label">Direction</label>
+        <div class="row">
+          <div class="col-sm-12 col-lg-3 col-md-3 col-xl-3">
+            <input id="vertical" class="radio-custom" checked name="radio-group3" type="radio">
+            <label for="vertical" class="radio-custom-label radio-pic vertical">Vertical</label>
+          </div>
+          <div class="col-sm-12 col-lg-3 col-md-3 col-xl-3">
+            <input id="horizontal" class="radio-custom" name="radio-group3" type="radio">
+            <label for="horizontal" class="radio-custom-label radio-pic horizontal">Horizontal</label>
+          </div>
+        </div>
+        <label class="big-label">Page</label>
+        <div class="row">
+          <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
+            <input id="one_in_one" class="radio-custom" checked name="radio-group4" type="radio">
+            <label for="one_in_one" class="radio-custom-label radio-pic one-in-one">1 in 1</label>
+          </div>
+          <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
+            <input id="two_in_one" class="radio-custom" name="radio-group4" type="radio">
+            <label for="two_in_one" class="radio-custom-label radio-pic two-in-one">2 in 1</label>
+          </div>
+          <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
+            <input id="four_in_one" class="radio-custom" name="radio-group4" type="radio">
+            <label for="four_in_one" class="radio-custom-label radio-pic four-in-one">4 in 1</label>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="isDocCopy==false">
+        <div class="row">
+          <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <!-- Color-MOno -->
+            <label class="small-label">Color</label>
+            <div class="row">
+              <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <input id="color" checked class="radio-custom" name="color" type="radio">
+                <label for="color" class="radio-custom-label radio-pic one">Color</label>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <input id="mono" class="radio-custom" name="color" type="radio">
+                <label for="mono" class="radio-custom-label radio-pic two">Mono</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- option - ID Card Passport -->
+        <div class="row">
+          <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <label class="small-label">Option</label>
+            <div class="row">
+              <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <input id="id-card" checked class="radio-custom" name="option" type="radio">
+                <label for="id-card" class="radio-custom-label radio-pic id_card">ID Card</label>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <input id="passport" class="radio-custom" name="option" type="radio">
+                <label for="passport" class="radio-custom-label radio-pic passport">Passport</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Process Front Back -->
+        <div class="row">
+          <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <label class="small-label">Process</label>
+            <div class="row">
+              <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                <input id="front" checked class="radio-custom" name="process" type="radio">
+                <label for="front" class="radio-custom-label radio-pic front">Front</label>
+              </div>
+              <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"><span class="three-dot"><i class="fas fa-ellipsis-h"></i></span></div>
+              <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                <input id="back" class="radio-custom" name="process" type="radio">
+                <label for="back" class="radio-custom-label radio-pic back">Back</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-xl-6 col-lg-6">
+      <div class="row">
+        <div class="col-sm-12 col-md-6 col-xl-6 col-lg-6">
+          <!-- left -->
+          <label class="big-label">Preview</label>
+          <div>
+            <img class="preview-image" id="preview-image">
+          </div>
+          <br>
+          <label class="big-label">Density</label>
+          <input type="range" class="form-control-range" id="formControlRange">
+          <br>
+          <div id="setting_div">
+            <button class="simple-button settings" (click)="openModalWithClass(copy)">
+              <i class="fas fa-cog"></i>&nbsp;
+              Settings
+            </button>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-xl-6 col-lg-6">
+          <!-- right -->
+          <div class="shrink-part">
+            <label class="big-label">Copies</label>
+            <input type="text" [value]="quantity" name="CopyCount" id="CopyCount" style="text-align:right;">
+            <br><br>
+            <img src="../../../../assets/ui/Icon/button_+.png" (click)="plus()" id="AddButton"
+                 style="max-height:75px; max-width:75px" /><img src="../../../../assets/ui/Icon/button_-.png"
+                                                                (click)="minus()" id="SubButton" style="max-height:75px; max-width:75px; margin-left:40px;"
+                                                                alt="" srcset="">
+            <br>
+            <label class="big-label payment">Payment Due</label>
+            <div class="wrapper">
+              <label class="dollar">$</label>
+              <input type="text" name="payment" class="payment-text" id="">
+            </div>
+            <br>
+            <img class="mx-auto d-block" height="200px" width="200px" (click)="startModalWithClass(start)" style="margin-top: 25px;"
+                 src="../../../../assets/ui/customized/Start button.png" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Copy Modal -->
+<ng-template #copy>
+  <nav class="navbar-light bg-modal-color">
+    <span type="button" style="cursor: pointer;" class="pull-left" (click)="modalRef.hide()">
+      <span aria-hidden="true" class="return-arrow"><i class="fas fa-arrow-left"></i></span>
+    </span>
+    <p class="nav-title-color">Copy Setting</p>
+  </nav>
+  <div class="modal-body">
+    <div class="container">
+
+      <div class="row" style="justify-content: center;">
+        <div class="col-lg-2"></div>
+        <div class="col col-lg-4" style="margin-left: -15px;">
+          <input id="single_slide" class="radio-custom" checked name="radio-group6 type" type="radio"
+                 [value]="1">
+          <label for="single_slide" class="radio-custom-label">Single Side</label>
+        </div>
+        <div class="col col-lg-4">
+          <input id="double_slide" class="radio-custom" name="radio-group6 type" type="radio" [value]="0">
+          <label for="double_slide" class="radio-custom-label">Double Side</label>
+        </div>
+        <div class="col-lg-2"></div>
+      </div>
+      <div class="row col-lg-12" style="margin-left:0px; margin-right:0px; justify-content: center;">
+
+        <div class="col col-lg-4">
+          <label>Original</label><br>
+          <div style="background-image: url(../images/test-background.gif); height: 150px; width: 200px; border: 2px solid #bdc3c7;">
+          </div>
+        </div>
+        <div class="col-md-1 col-xl-1 col-lg-1">
+          <span><i class="fas fa-arrow-right"></i></span>
+        </div>
+
+        <div class="col col-lg-4 col-md-auto">
+          <label>Larger/Smaller</label><br>
+          <div style="background-image: url(../images/test-background.gif); height: 150px; width: 200px; border: 2px solid #bdc3c7;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer" style="justify-content: center;">
+    <button type="button" class="simple-button" (click)="modalRef.hide()">Close</button>
+    <button type="button" class="simple-button">Save</button>
+  </div>
+</ng-template>
+
+<!--Start Modal -->
+<ng-template #start>
+  <nav class="navbar-light bg-modal-color">
+    <span type="button" style="cursor: pointer;" class="pull-left" (click)="modalRef.hide()">
+      <span aria-hidden="true" class="return-arrow"><i class="fas fa-arrow-left"></i></span>
+    </span>
+    <p class="nav-title-color">Payment</p>
+  </nav>
+  <div class="modal-body">
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col-4">
+          <p class="p-bold">Total Price: $ xxxxxx</p>
+        </div>
+        <div class="col-4">
+          <p class="p-bold">1 Page,mono,A4</p>
+        </div>
+      </div>
+      <hr>
+      <div class="row" style="justify-content: center;">
+        <p class="p-bold">Please choose pay option and press go button for pay, if you want to keep going.</p>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
+          <img src="../../../assets/ui/Icon/Cash button.png" class="img-fluid" alt="" srcset="">
+        </div>
+        <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
+          <img src="../../../assets/ui/Icon/Card button.png" class="img-fluid" alt="" srcset="">
+        </div>
+        <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
+          <img src="../../../assets/ui/Icon/Card for copy button.png" class="img-fluid" alt="" srcset="">
+        </div>
+        <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
+          <img src="../../../assets/ui/Icon/membership button.png" class="img-fluid" alt="" srcset="">
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="modal-footer" style="justify-content: center;">
+    <button type="button" class="simple-button" (click)="modalRef.hide()">Cancel</button>
+    <button type="button" class="simple-button">Go</button>
+  </div>
+</ng-template>

@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+body{
+    margin: 0px 0px 0px 0px;
+    background: url(assets/ui/background.png) no-repeat center;
+    background-size: 100% 100%;
+    font-family: 'Roboto', sans-serif;
+}
+
+.bg-nav-color{
+    background-color:#34495E;
+    height:40px;
+  }
+  
+  .nav-title-color{
+    color:white;
+    text-align: center;
+    line-height:35px;
+    font-size:25px;
+  }
+  
+  .bg-modal-color{
+    background-color:black;
+    height:40px;
+  }
+
+  ::-webkit-input-placeholder { /* Edge */
+    color: black;
+    font-weight: 600;
+  }
+    
+    :-ms-input-placeholder { /* Internet Explorer */
+      color: black;
+      font-weight: 600;
+    }
+    
+    ::placeholder {
+      color: black;
+      font-weight: 600;
+    }
+
+
+    .radio-custom + .radio-custom-label:before {
+      content: '';
+      background: aliceblue;
+      border: 0.5px solid #ddd;
+      display: inline-block;
+      vertical-align: middle;
+      width: 25px;
+      height: 25px;
+      padding: 0px;
+      margin-right: 10px;
+      text-align: center;
+  }
+  
+  
+  .radio-custom + .radio-custom-label:before {
+      border-radius: 50%;
+      border-color:#2c3e50; /*border color of circle*/
+  }
+  
+  .radio-custom:checked + .radio-custom-label:before {
+      content: "\f00c";
+      font-family: 'FontAwesome';
+      color: #fff; /*color of tick */
+      background: #2c3e50;
+      border-color:white;
+  }
+
+
+  .chckStyle{
+    zoom: 2;
+  }

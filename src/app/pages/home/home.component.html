@@ -1,0 +1,50 @@
+<nav class="navbar-light bg-nav-color">
+    <p class="nav-title-color">Home</p>
+</nav>
+<div class="d-flex flex-row-reverse" style="margin-right: 70px; margin-top:15px;">
+    <div class="p-2">
+        <input id="korean" class="radio-custom" name="language" type="radio">
+        <label for="korean" class="radio-custom-label"><span style="vertical-align: middle; margin-left: 15px;">Korean</span></label>
+    </div>
+    <div class="p-2">
+        <input id="english" checked class="radio-custom" name="language" type="radio">
+        <label for="english" class="radio-custom-label"><span style="vertical-align: middle; margin-left: 15px;">English</span></label>
+    </div>
+</div>
+<div class="container box">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-3 text-center">
+            <a [routerLink]="['/print']">
+                    <img src="../../../assets/ui/Icon/print_circle.png" class="img-fluid" style="max-height: 250px;"/>
+            </a>
+                <h5 class="justify-element-center">PRINT</h5>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-3 text-center">
+            <a [routerLink]="['/select-image']">
+                    <img src="../../../assets/ui/Icon/copy_circle.png" class="img-fluid" style="max-height: 250px;" />
+            </a>
+                <h5 class="justify-element-center">COPY</h5>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-3 text-center">
+            <a [routerLink]="['/scan']">
+                    <img src="../../../assets/ui/Icon/scan_circle.png" class="img-fluid" style="max-height: 250px;" />
+            </a>
+                <h5 class="justify-element-center">SCANNER</h5>
+        </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-3 text-center">
+            <a [routerLink]="['/fax-image']">
+                    <img src="../../../assets/ui/Icon/fax_circle.png" class="img-fluid" style="max-height: 250px;" />
+            </a>
+                <h5 class="justify-element-center">FAX</h5>
+        </div>
+        
+        
+    </div>
+
+</div>
+<!-- <div class="d-flex flex-row-reverse" style="margin-right: 30px;">
+    <div class="p-2"><button class="simple-button"><i class="fas fa-cog"></i> &nbsp; Setting</button></div>
+</div> -->

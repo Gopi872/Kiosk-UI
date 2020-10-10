@@ -1,0 +1,191 @@
+<nav class="navbar-light bg-nav-color">
+    <p class="nav-title-color">Print USB</p>
+</nav>
+<div class="container box">
+    <div class="d-flex justify-content-end">
+        <div class="row">
+            <div class="p-2 bd-highlight">
+                <a [routerLink]="['/home']">
+                    <button class="simple-button" type="submit" style=""><i class="fas fa-home"></i>
+                        &nbsp;
+                        Home</button>
+                </a>
+            </div>
+        <div class="p-2 bd-highlight"><button class="simple-button" type="submit" style="margin-right: 20px;"><i class="fas fa-redo"></i> &nbsp;
+                Bring Back</button></div>
+            </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-lg-8 col-md-8 col-xl-8">
+            <label class="big-label">USB</label>
+            <div class="row">
+                <div class="col-sm-12 col-lg-6 col-xl-6">
+                    <select name="usb"  id="">
+                        <option value="">USB > Folder A</option>
+                        <option value="">bfdfvdfffddf</option>
+                        <option value="">bfdfvdfffddf</option>
+                        <option value="">bfdfvdfffddf</option>
+                        <option value="">bfdfvdfffddf</option>
+                        <option value="">bfdfvdfffddf</option>
+                        
+                    </select>
+                </div>
+                <div class="col-sm-12 col-lg-3 col-xl-3">
+                    <button class="dark-button" type="submit">Go</button>
+                </div>
+                <div class="col-sm-12 col-lg-3 col-xl-3">
+                    <button class="dark-button" type="submit">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 50px; margin-bottom: 10px;">
+        <div class="col-sm-12 col-lg-8 col-md-8 col-xl-8">
+            <label class="big-label">File List</label>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr style="background-color: white;">
+                            <th scope="col">Date</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Color</th>
+                            <th scope="col">Page</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Size</th>
+                            <th scope="col">Select</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor ="let list of waitingList">
+                            <td><input type="checkbox" class="chckStyle" (change)="onCheckboxChange($event,list)"></td>
+                            <td>{{list.showRequestTime |date: 'd/M/y'}}</td>
+                            <td>{{list.clientName}}</td>
+                            <td>{{list.color}}</td>
+                            <td>{{list.totalSheet}}</td>
+                            <td>{{list.unitMoney}}</td>
+                            <td>A{{list.unitMoney}}</td>
+                           
+                        </tr>
+                      
+                    </tbody>
+                </table>
+                
+            </div>
+            <select class="form-control form-control-lg">
+                <option>Select Target Printer</option>
+                <option *ngFor="let opt of targetPrinter" [value]="opt.name">{{opt.name}}</option>
+            </select>
+            <br>
+            
+            <label class="big-label">Choose Print Option</label>
+            <div class="row" style="margin-top: 0px;">
+                <div class="col-sm-12 col-lg-6">
+                    <label class="">Color</label>
+                    <div class="row">
+                    <div class="col-sm-12 col-lg-4 col-xl-4">
+                        <input id="color" class="radio-custom" name="radio-group2" checked type="radio">
+                        <label for="color" class="radio-custom-label radio-pic one">Color</label>
+                    </div>
+
+                    <div class="col-sm-12 col-lg-4 col-xl-4">
+                        <input id="mono" class="radio-custom" name="radio-group2" type="radio">
+                        <label for="mono" class="radio-custom-label radio-pic two">Mono</label>
+                    </div>
+                </div>
+                </div>
+                <div class="col-sm-12 col-lg-4 paper">
+                    <label class="">Paper</label>
+                        <div class="row ">
+                            <div class="col-sm-12 col-lg-6 col-xl-6">
+                                <input id="A4" class="radio-custom" checked name="radio-group" type="radio">
+                                <label id="A4" for="A4" class="radio-custom-label">A4</label>
+                            </div>
+                            <div class="col-sm-12 col-lg-6 col-xl-6">
+                                <input id="A3" class="radio-custom" name="radio-group" type="radio">
+                                <label for="A3" class="radio-custom-label">A3</label>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input id="B4" class="radio-custom" name="radio-group" type="radio">
+                                <label for="B4" class="radio-custom-label">B4</label>
+                            </div>
+                            <div class="col-sm-6">
+                                <input id="B5" class="radio-custom" name="radio-group" type="radio">
+                                <label for="B5" class="radio-custom-label">B5</label>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-sm-12 col-md-4 col-xl-4 col-lg-4">
+            <div class="container">
+                <div class="payment-margin-left">
+                    <label class="big-label">No. of Jobs</label><br>
+                    <div class="wrapper">
+                        <input type="text" name="jobs" [(ngModel)]='paymentDue' class="payment-text" id="jobs_selected">
+                    </div>
+                <label class="big-label payment">Payment Due</label>
+                <div class="wrapper">
+                <label class="dollar">$</label>
+                <input type="text" name="payment" [(ngModel)]='paymentDue' class="payment-text" id="">
+                </div>
+                <br>
+                <img class="mx-auto d-block" height="200px" width="200px" style="margin-top: 25px;" (click)="startModalWithClass(start)"
+                    src="../../../../assets/ui/customized/Start button.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Start Modal -->
+<ng-template #start>
+    <nav class="navbar-light bg-modal-color">
+        <span type="button" style="cursor: pointer;" class="pull-left" (click)="modalRef.hide()">  
+            <span aria-hidden="true" class="return-arrow"><i class="fas fa-arrow-left"></i></span>  
+        </span>
+        <p class="nav-title-color">Payment</p>
+    </nav>
+    <div class="modal-body">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-4">
+                    <p class="p-bold">Total Price: $ xxxxxx</p> 
+                </div>
+                <div class="col-4">
+                    <p class="p-bold">1 Page,mono,A4</p>
+                </div>
+              </div>
+            <hr>
+            <div class="row" style="justify-content: center;">
+                <p class="p-bold">Please choose pay option and press go button for pay, if you want to keep going.</p>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
+                    <img src="../../../assets/ui/Icon/Cash button.png" class="img-fluid" alt="" srcset="">
+                </div>
+                <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
+                    <img src="../../../assets/ui/Icon/Card button.png" class="img-fluid" alt="" srcset="">
+                </div>
+                <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
+                    <img src="../../../assets/ui/Icon/Card for copy button.png" class="img-fluid" alt="" srcset="">
+                </div>
+                <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
+                    <img src="../../../assets/ui/Icon/membership button.png" class="img-fluid" alt="" srcset="">
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+    <div class="modal-footer" style="justify-content: center;">
+        <button type="button" class="simple-button" (click)="modalRef.hide()">Cancel</button>
+        <button type="button" class="simple-button">Go</button>
+    </div>
+</ng-template>

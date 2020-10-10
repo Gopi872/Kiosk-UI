@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.settings{
+  margin-left: 5px; 
+  margin-top:150px;
+}
+
+.box{
+    margin-top: 10px;
+}
+
+.shrink-part{
+  margin-left:60px
+}
+
+.big-label{
+  font-family: 'Roboto', sans-serif;
+  font-size: 25px;
+}
+
+.simple-button{
+  background-color: aliceblue;
+  border: 0px;
+  padding: 10px;
+  width:200px;
+  cursor: pointer;
+}
+
+.dark-button{
+  background-color: #34495E;
+  border: 0px;
+  padding: 10px;
+  width:100%;
+  color:white;
+}
+
+input[type=text]{
+  border-style: solid;
+  border-color:#bdc3c7;
+  width: 100%;
+  padding: 10px;
+}
+
+.payment{
+  margin-top: 40px;
+}
+  /* radio button pic */
+
+  .radio-custom {
+    opacity: 0;
+    position: absolute;   
+}
+
+.radio-custom, .radio-custom-label {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 5px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.radio-custom-label {
+    position: relative;
+    background-color: aliceblue;
+    width:100%;
+}
+
+input[type="radio"]:checked+.radio-custom-label {
+     background-color:#2c3e50; 
+     color:white;
+}
+
+  input[type="radio"]:checked+.vertical {
+    background: #2c3e50 url(../../../assets/ui/Icon/vertical_sellceted.png) no-repeat 50% 90%;
+    color:white;
+ }
+ input[type="radio"]:checked+.horizontal {
+  background: #2c3e50 url(../../../assets/ui/Icon/horizental_sellected.png) no-repeat 50% 80%;
+  color:white;
+}
+input[type="radio"]:checked+.one-in-one {
+  background: #2c3e50 url(../../../assets/ui/Icon/1n1_sellected.png) no-repeat 50% 80%;
+  color:white;
+}
+input[type="radio"]:checked+.two-in-one {
+  background: #2c3e50 url(../../../assets/ui/Icon/2in1_sellected.png) no-repeat 50% 80%;
+  color:white;
+}
+input[type="radio"]:checked+.four-in-one {
+  background: #2c3e50 url(../../../assets/ui/Icon/4in1_sellected.png) no-repeat 50% 80%;
+  color:white;
+}
+
+input[type="radio"]:checked+.id_card {
+  background: #2c3e50 url(../../../assets/ui/Icon/id_card_sellected.png) no-repeat 50% 80%;
+  color:white;
+}
+input[type="radio"]:checked+.passport {
+  background: #2c3e50 url(../../../assets/ui/Icon/passport_sellected.png) no-repeat 50% 80%;
+  color:white;
+}
+input[type="radio"]:checked+.front {
+  background: #2c3e50 url(../../../assets/ui/Icon/id_card_sellected.png) no-repeat 50% 80%;
+  color:white;
+}
+input[type="radio"]:checked+.back {
+  background: #2c3e50 url(../../../assets/ui/Icon/id_card_back_sellected.png) no-repeat 50% 80%;
+  color:white;
+}
+
+.radio-custom:focus + .radio-custom-label {
+  outline: 1px solid #ddd; /* focus style */
+}
+
+  .radio-pic{
+    display: inline-block;
+    cursor: pointer;
+    width: 130px;
+    height: 130px;
+    }
+  
+.one {
+    background: aliceblue url(../../../assets/ui/Icon/colour.png) no-repeat 50% 80%;
+}
+
+.two {
+    background: aliceblue url(../../../assets/ui/Icon/mono.png) no-repeat 50% 80%;
+}
+
+.vertical {
+    background: aliceblue url(../../../assets/ui/Icon/vertical_unsellected.png) no-repeat 50% 105%;
+}
+
+.horizontal {
+  background: aliceblue url(../../../assets/ui/Icon/horizental_unsellected.png) no-repeat 50% 80%;
+}
+
+.one-in-one {
+    background: aliceblue url(../../../assets/ui/Icon/1n1_unsellected.png) no-repeat 50% 80%;
+ }
+
+ .two-in-one {
+  background: aliceblue url(../../../assets/ui/Icon/2in1_unsellected.png) no-repeat 50% 80%;
+}
+
+.four-in-one {
+  background: aliceblue url(../../../assets/ui/Icon/4in1_unsellected.png) no-repeat 50% 80%;
+}
+
+.id_card{
+  background: aliceblue url(../../../assets/ui/Icon/id_card_unsellected.png) no-repeat 50% 80%;
+}
+
+.passport{
+  background: aliceblue url(../../../assets/ui/Icon/passport_unsellected.png) no-repeat 50% 80%;
+}
+
+.front{
+  background: aliceblue url(../../../assets/ui/Icon/id_card_unsellected.png) no-repeat 50% 80%;
+}
+
+.back{
+  background: aliceblue url(../../../assets/ui/Icon/Id_card_back_unsellceted.png) no-repeat 50% 80%;
+}
+   /* end radio button pic */
+  @media only screen and (min-width: 900px) {
+    .fa-arrow-right{
+      margin-top: 85px;
+      font-size: 30px;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .payment{
+        margin-top: 20px;
+    }
+    .shrink-part{
+      margin-left:0px
+    }
+    .settings{
+      margin-left: 5px; 
+      margin-top:10px;
+    }
+    .fa-arrow-right{
+      margin-top: 5px;
+      font-size: 30px;
+    }
+  }
+
+  .dollar{
+    position: absolute;
+    padding: 10px;
+  }
+  
+  .payment-text{
+    text-align:right;
+  }
+
+  .return-arrow{
+    color: white;
+    margin-left: 15px;
+    line-height: 40px;
+    position: absolute;
+  }
+
+  .p-bold{
+    justify-content: center;
+    color: black;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .three-dot{
+    position: absolute;
+    margin-left: 55px;
+    font-size: 35px;
+    margin-top: 45px;
+  }
+
+  .preview-image{
+    background-image: url(https://picsum.photos/250/200);
+    height: 275px; 
+    width: 240px; 
+    border: 2px solid #bdc3c7;
+  }
+
+
+.ActiveClass {
+  background-color: #2c3e50;
+  color: white;
+}
