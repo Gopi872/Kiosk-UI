@@ -38,7 +38,7 @@ export class UsbComponent implements OnInit {
     this.imgHeight = '275px';
     this.imgWidth = '240px';
     this.imgBorder = '2px solid #bdc3c7';
-    this.workType = 1204;
+    this.workType = 1204; //1204
     this.paymentDue = '';
   }
 
@@ -113,6 +113,7 @@ export class UsbComponent implements OnInit {
         this.updateImage(false, '90deg');
       }
     }
+    this.calculateDuePayment();
   }
 
   onDirectionChange(value) {
@@ -130,6 +131,7 @@ export class UsbComponent implements OnInit {
         this.updateImage(false, '90deg');
       }
     }
+    this.calculateDuePayment();
   }
 
   onFileChange(value) {
@@ -142,13 +144,33 @@ export class UsbComponent implements OnInit {
 
   onPaperChange(value) {
     this.selectedPaper = value;
+    this.calculateDuePayment();
   }
+
   scanUsbGo(){
+    let color = this.selectedColorCode === 1 ? true : false;
+    let reqData = {
+      'images' : this.selectedScanUsbImgs,
+      "destPrinterUrl": this.scanserviceService.selectedPrinter,
+      "attributes": {
+        "username": "user",
+        "copies": 1,
+        "duplex": false,
+        "color": color,
+        "pageFormat": this.selectedPaper
+      }    
+    };
     this.scanserviceService.paymentPopup().subscribe((response: any) => {
       try {
         console.log('Response', response);
         if(response){
+          this.scanserviceService.saveScanUsbImgs(reqData).subscribe( (res: any) => {
+            try{
+                console.log("res");
+            } catch(error){
 
+            }
+          });
         }
       } catch (error) {
       }

@@ -12,9 +12,11 @@ export class ScanserviceService {
   oldBaseUrl = environment.oldBaseUrl;
   oldBaseUrl1 = environment.oldBaseUrl1;
   selectedScanUsbImgs;
+  selectedPrinter: string;
 
   constructor(private http: HttpClient) {
     this.selectedScanUsbImgs = [];
+    this.selectedPrinter = '';
    }
 
   /**

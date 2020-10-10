@@ -32,23 +32,27 @@ export class SelectImageScanusbComponent implements OnInit {
   }
   fetchTargetPrinter(){
 
-    this.PrintserviceService.fetchTargetPrinter().subscribe((data:any)=>{
+    this.PrintserviceService.fetchTargetPrinter().subscribe((data: any)=>{
       try {
-        console.log("data fetchTargetPrinter",data);
-        this.targetPrinter=data;
+        console.log("data fetchTargetPrinter", data);
+        this.targetPrinter = data;
       } catch (error) {
         
       }
     })
   }
 
-  scanUsbImgSelect(image){
-    let index = this.scanserviceService.selectedScanUsbImgs.indexOf(image);
-    if(index === -1){
+  scanUsbImgSelect(image) {
+    const index = this.scanserviceService.selectedScanUsbImgs.indexOf(image);
+    if(index === -1) {
       this.scanserviceService.selectedScanUsbImgs.push(image);
     } else {
       this.scanserviceService.selectedScanUsbImgs.splice(index, 1);
     }
+  }
+
+  changePrinter(value) {
+    this.scanserviceService.selectedPrinter = value;
   }
 
 }
