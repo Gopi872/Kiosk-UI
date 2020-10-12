@@ -137,7 +137,7 @@ export class FaxComponent implements OnInit {
       try {
         console.log('Response', response);
         if (response) {
-          this.commonService.saveFaxImgs(reqData).subscribe( (res: any) => {
+          this.commonService.saveFaxImgs(this.selectedFaxImgs).subscribe( (res: any) => {
             try {
                 console.log('res');
                 if (res === 'Images sent successfully.') {

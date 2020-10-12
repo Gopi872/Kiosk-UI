@@ -75,11 +75,8 @@ export class CommonService {
       pageFormat: data.pageFormat
     }
   };
-  const headers = {
-    headers: new HttpHeaders({ 'Content-Type': 'multipart/form-data' })
-  };
    // tslint:disable-next-line: align
-   return this.httpClient.post(`${this.baseUrl}/kioskapi/fax/send`, this.getImageReq(data));
+   return this.httpClient.post(`${this.baseUrl}/kioskapi/fax/send`, data);
  }
 
  getImageReq(data) {
@@ -105,7 +102,10 @@ export class CommonService {
 
   // Save Images
   public sendEmailToUser(attachments: any): Observable<any> {
-   const emaildata = {
+    const attachment = attachments.forEach(element => {
+      element.filename = element.fileName;
+    });
+    const emaildata = {
     from: {
       email: 'developer9@myepsoft.com'
     },
@@ -121,7 +121,7 @@ export class CommonService {
       }
     },
     // tslint:disable-next-line: object-literal-shorthand
-    attachments: attachments
+    attachments: attachment
    };
     // tslint:disable-next-line: align
     return this.httpClient.post(`${this.baseUrl}/kioskapi/email/send`, emaildata);
