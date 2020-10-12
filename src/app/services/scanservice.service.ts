@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {environment} from '../../environments/environment';
+import { CommonService} from '../services/common.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,27 +13,31 @@ export class ScanserviceService {
   oldBaseUrl = environment.oldBaseUrl;
   oldBaseUrl1 = environment.oldBaseUrl1;
   selectedScanUsbImgs;
+  selectedScanPcImgs;
+  selectedScanMailImgs;
   selectedPrinter: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private httpClient: HttpClient, private commonService: CommonService) {
     this.selectedScanUsbImgs = [];
+    this.selectedScanPcImgs = [];
+    this.selectedScanMailImgs = [];
     this.selectedPrinter = '';
    }
 
-  /**
-    * Get Cost of All Media Types
-    */
-   public getMediaTypes(): Observable<any> {
-    return this.http.get(`${this.oldBaseUrl1}/system/media/cost`);
+   // Insert Scan Job
+   public insertScanJob(): Observable<any> {
+    const insertScanJobReq = {
+      userId: 78,
+      id: '190711766',
+      userName: '',
+      scanType: 1004,
+      departmentId: 73,
+      printerId: 13,
+      code: '',
+      ip: this.commonService.ipAddress,
+      locationId: 0
+    };
+     // tslint:disable-next-line: align
+     return this.httpClient.post(`${this.oldBaseUrl1}/log/scan/insert`, insertScanJobReq);
    }
-
-   //Payment Popup Go
-   public paymentPopup(): Observable<any> {
-    return this.http.get(`${this.oldBaseUrl1}/dashboard/status`);
-  }
-
-  //Save Images
-  public saveScanUsbImgs(data: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/kioskapi/images/send`, data);
-  }
 }

@@ -4,9 +4,10 @@
             <option>Dropdown (MFP 001) Source</option>
         </select>
          -->
+         
          <select class="form-control form-control-lg" [(ngModel)]="selectedPrinter"
-          (change)="getSeletedPrinter($event)">
-            <option>Select Target Printer</option>
+          (change)="getSeletedPrinter($event.target.value)">
+            <option *ngIf="targetPrinter.length > 1">Select Target Printer</option>
             <option *ngFor="let opt of targetPrinter" 
             [value]="opt.name">{{opt.name}}
         </option>
@@ -18,8 +19,8 @@
             <div class="col-sm-2" *ngFor ="let image of imageList; let i=index">
                 <li>
                     <input type="checkbox" id="myCheckbox1{{i}}"
-                     (change)="getListOfImages(image)"/>
-                    <label for="myCheckbox1{{i}}"><img src="http://localhost:8097/kioskapi/{{image}}" /></label>
+                     (change)="onChange_SelectedImages(image)"/>
+                    <label for="myCheckbox1{{i}}"><img src="http://storage.myepsoft.com:53335/kioskapi/{{image}}" /></label>
                 </li>
             </div>
 
@@ -32,7 +33,7 @@
             <button class="simple-button grey" type="reset">
                 &nbsp;
                 Cancel</button>
-                <a>
+                <a [routerLink]="['/copy']">
                 <button class="simple-button blue" type="submit" (click)="OnSelectImage()">
                 &nbsp;
                 Ok</button>

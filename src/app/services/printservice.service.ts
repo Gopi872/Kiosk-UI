@@ -9,6 +9,7 @@ import {environment} from '../../environments/environment';
 export class PrintserviceService {
   baseUrl = environment.baseUrl;
   oldBaseUrl= environment.oldBaseUrl;
+  oldBaseUrl1= environment.oldBaseUrl1;
   constructor(private http:HttpClient) 
   {
 
@@ -38,7 +39,7 @@ export class PrintserviceService {
     */
    public fetchMailServernfo() {
      
-    return this.http.get(`${this.baseUrl}/system/setting/mailServer`)
+    return this.http.get(`${this.oldBaseUrl1}/system/setting/mailServer`)
    }
 
    /**

@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { from } from 'rxjs';
 import {PrintserviceService} from '../../services/printservice.service';
 import {CopyComponent} from '../copy/copy.component';
+import { CopyserviceService } from '../../services/copyservice.service';
+import { CommonService } from '../../services/common.service';
 
 @Component({
   selector: 'app-select-image',
@@ -10,62 +12,60 @@ import {CopyComponent} from '../copy/copy.component';
   styleUrls: ['./select-image.component.css']
 })
 export class SelectImageComponent implements OnInit {
- public imageList=[];
- public targetPrinter=[];
- listOfSelectedImages:any=[];
- selectedPrinter?:string; 
-  constructor(private PrintserviceService :PrintserviceService,private router:Router) { }
+ public imageList = [];
+ public targetPrinter = [];
+ listOfSelectedImages: any = [];
+ selectedPrinter?: string;
+  constructor(private printserviceService: PrintserviceService, private router: Router,
+              private copyserviceService: CopyserviceService, private commonService: CommonService) {
+    this.copyserviceService.selectedCopyImgs = [];
+    this.commonService.selectedPrinterObj = {};
+  }
 
   ngOnInit() {
   this.fetchTargetPrinter();
-    this.PrintserviceService.fetchCopyImage().subscribe((payload:any)=>{
+    // tslint:disable-next-line:typedef-whitespace
+    // tslint:disable-next-line:whitespace
+  this.printserviceService.fetchCopyImage().subscribe((payload: any)=> {
       try {
-        console.log("payload copy",payload)
-        this.imageList =payload;
+        console.log('payload copy', payload);
+        this.imageList = payload;
       } catch (error) {
-        
+
       }
     });
-    localStorage.removeItem('selectedImages');
-    localStorage.removeItem('seletedPrinter');
   }
-  fetchTargetPrinter(){
+  fetchTargetPrinter() {
 
-    this.PrintserviceService.fetchTargetPrinter().subscribe((data:any)=>{
+    this.printserviceService.fetchTargetPrinter().subscribe((data: any) => {
       try {
-        console.log("data fetchTargetPrinter",data);
-        this.targetPrinter=data;
+        console.log('data fetchTargetPrinter', data);
+        this.targetPrinter = data;
       } catch (error) {
-        
+
       }
-    })
+    });
   }
-  getListOfImages(images){
-  if(this.listOfSelectedImages && this.listOfSelectedImages.length==0){
-      this.listOfSelectedImages.push(images);
-  }
-  else{
-      var index=this.listOfSelectedImages.indexOf(images);
-      if(index>-1)
-      this.listOfSelectedImages.splice(index,1);
-      else
-      this.listOfSelectedImages.push(images)
-  }    
-  }
-  getSeletedPrinter($event){
-    this.selectedPrinter=$event.target.value;    
-  }
-  OnSelectImage(){
-    debugger;
-    if(this.selectedPrinter !=undefined && this.selectedPrinter!==null && this.listOfSelectedImages.length>0){
-      localStorage.removeItem('selectedImages');
-      localStorage.removeItem('seletedPrinter');
-      localStorage.setItem('selectedImages',JSON.stringify(this.listOfSelectedImages));
-      localStorage.setItem('seletedPrinter',this.selectedPrinter);      
-      this.router.navigate(["/copy"]);
+  onChange_SelectedImages(images) {
+    const index = this.copyserviceService.selectedCopyImgs.indexOf(images);
+    if (index === -1) {
+      this.copyserviceService.selectedCopyImgs.push(images);
+    } else {
+      this.copyserviceService.selectedCopyImgs.splice(index, 1);
     }
-    else{
-      alert("Select all fields");
+
+  }
+  getSeletedPrinter(value) {
+    this.targetPrinter.forEach(printer => {
+      if (value === printer.name) {
+        this.commonService.selectedPrinterObj = printer;
+      }
+    });
+    this.copyserviceService.selectedPrinter = value;
+  }
+  OnSelectImage() {
+    if (!(this.copyserviceService.selectedPrinter && this.copyserviceService.selectedCopyImgs.length > 0)) {
+      alert('Select all fields');
     }
   }
 }

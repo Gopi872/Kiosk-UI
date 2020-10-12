@@ -28,7 +28,7 @@
                 &nbsp;
                 Cancel</button>
                 <a [routerLink]="['/scan-usb']">
-                <button class="simple-button blue" type="submit">
+                <button class="simple-button blue" type="submit" [disabled]="!isValid">
                 &nbsp;
                 Ok</button>
                 </a>

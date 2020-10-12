@@ -22,9 +22,9 @@
   </div>
   <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
     <div class="col-sm-12 col-lg-6 col-md-6 col-xl-6">
-      <select class="form-control form-control-lg">
+      <!-- <select class="form-control form-control-lg">
         <option>Select Target Printer</option>
-      </select>
+      </select> -->
       <label class="big-label">Choose Copy Option</label>
       <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
@@ -50,11 +50,11 @@
             <label class="small-label">Color</label>
             <div class="row">
               <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <input id="color" checked class="radio-custom" name="radio-group2" type="radio">
+                <input id="color" checked class="radio-custom" name="radio-group2" type="radio" (change)="onColorChange('Color')">
                 <label for="color" class="radio-custom-label radio-pic one">Color</label>
               </div>
               <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <input id="mono" class="radio-custom" name="radio-group2" type="radio">
+                <input id="mono" class="radio-custom" name="radio-group2" type="radio" (change)="onColorChange('Mono')">
                 <label for="mono" class="radio-custom-label radio-pic two">Mono</label>
               </div>
             </div>
@@ -63,21 +63,21 @@
             <label class="small-label">Paper</label>
             <div class="row">
               <div class="col-sm-12 col-lg-6 col-xl-6">
-                <input id="A4" checked class="radio-custom" name="radio-group" type="radio">
+                <input id="A4" checked class="radio-custom" name="radio-group" type="radio" (change)="onPaperChange('A4')">
                 <label for="A4" class="radio-custom-label">A4</label>
               </div>
               <div class="col-sm-12 col-lg-6 col-xl-6">
-                <input id="A3" class="radio-custom" name="radio-group" type="radio">
+                <input id="A3" class="radio-custom" name="radio-group" type="radio" (change)="onPaperChange('A3')">
                 <label for="A3" class="radio-custom-label">A3</label>
               </div>
             </div>
             <div class="row">
               <div class="col-sm-6">
-                <input id="B4" class="radio-custom" name="radio-group" type="radio">
+                <input id="B4" class="radio-custom" name="radio-group" type="radio" (change)="onPaperChange('B4')">
                 <label for="B4" class="radio-custom-label">B4</label>
               </div>
               <div class="col-sm-6">
-                <input id="B5" class="radio-custom" name="radio-group" type="radio">
+                <input id="B5" class="radio-custom" name="radio-group" type="radio" (change)="onPaperChange('B5')">
                 <label for="B5" class="radio-custom-label">B5</label>
               </div>
             </div>
@@ -86,26 +86,26 @@
         <label class="big-label">Direction</label>
         <div class="row">
           <div class="col-sm-12 col-lg-3 col-md-3 col-xl-3">
-            <input id="vertical" class="radio-custom" checked name="radio-group3" type="radio">
+            <input id="vertical" class="radio-custom" checked name="radio-group3" type="radio" (change)="onDirectionChange('Vertical')">
             <label for="vertical" class="radio-custom-label radio-pic vertical">Vertical</label>
           </div>
           <div class="col-sm-12 col-lg-3 col-md-3 col-xl-3">
-            <input id="horizontal" class="radio-custom" name="radio-group3" type="radio">
+            <input id="horizontal" class="radio-custom" name="radio-group3" type="radio" (change)="onDirectionChange('Horizontal')">
             <label for="horizontal" class="radio-custom-label radio-pic horizontal">Horizontal</label>
           </div>
         </div>
         <label class="big-label">Page</label>
         <div class="row">
           <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
-            <input id="one_in_one" class="radio-custom" checked name="radio-group4" type="radio">
+            <input id="one_in_one" class="radio-custom" checked name="radio-group4" type="radio"  (change)="onPageChange(1)">
             <label for="one_in_one" class="radio-custom-label radio-pic one-in-one">1 in 1</label>
           </div>
           <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
-            <input id="two_in_one" class="radio-custom" name="radio-group4" type="radio">
+            <input id="two_in_one" class="radio-custom" name="radio-group4" type="radio"  (change)="onPageChange(2)">
             <label for="two_in_one" class="radio-custom-label radio-pic two-in-one">2 in 1</label>
           </div>
           <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
-            <input id="four_in_one" class="radio-custom" name="radio-group4" type="radio">
+            <input id="four_in_one" class="radio-custom" name="radio-group4" type="radio"  (change)="onPageChange(4)">
             <label for="four_in_one" class="radio-custom-label radio-pic four-in-one">4 in 1</label>
           </div>
         </div>
@@ -117,11 +117,11 @@
             <label class="small-label">Color</label>
             <div class="row">
               <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <input id="color" checked class="radio-custom" name="color" type="radio">
+                <input id="color" checked class="radio-custom" name="color" type="radio"  (change)="onColorChange('Color')">
                 <label for="color" class="radio-custom-label radio-pic one">Color</label>
               </div>
               <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <input id="mono" class="radio-custom" name="color" type="radio">
+                <input id="mono" class="radio-custom" name="color" type="radio"  (change)="onColorChange('Mono')">
                 <label for="mono" class="radio-custom-label radio-pic two">Mono</label>
               </div>
             </div>
@@ -133,11 +133,11 @@
             <label class="small-label">Option</label>
             <div class="row">
               <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <input id="id-card" checked class="radio-custom" name="option" type="radio">
+                <input id="id-card" checked class="radio-custom" name="option" type="radio"  (change)="onOptionChange('ID')">
                 <label for="id-card" class="radio-custom-label radio-pic id_card">ID Card</label>
               </div>
               <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <input id="passport" class="radio-custom" name="option" type="radio">
+                <input id="passport" class="radio-custom" name="option" type="radio" (change)="onOptionChange('Passport')">
                 <label for="passport" class="radio-custom-label radio-pic passport">Passport</label>
               </div>
             </div>
@@ -149,12 +149,12 @@
             <label class="small-label">Process</label>
             <div class="row">
               <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
-                <input id="front" checked class="radio-custom" name="process" type="radio">
+                <input id="front" checked class="radio-custom" name="process" type="radio" (change)="onProcessChange('Front')">
                 <label for="front" class="radio-custom-label radio-pic front">Front</label>
               </div>
               <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"><span class="three-dot"><i class="fas fa-ellipsis-h"></i></span></div>
               <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
-                <input id="back" class="radio-custom" name="process" type="radio">
+                <input id="back" class="radio-custom" name="process" type="radio" (change)="onProcessChange('Back')">
                 <label for="back" class="radio-custom-label radio-pic back">Back</label>
               </div>
             </div>
@@ -167,9 +167,12 @@
         <div class="col-sm-12 col-md-6 col-xl-6 col-lg-6">
           <!-- left -->
           <label class="big-label">Preview</label>
-          <div>
+          <!-- <div>
             <img class="preview-image" id="preview-image">
-          </div>
+          </div> -->
+          <div *ngIf="selectedCopyImgs?.length > 0">
+            <img #previewImg class="preview-image" src="http://storage.myepsoft.com:53335/kioskapi/{{selectedCopyImgs[0]}}" id="preview-image" >
+        </div>
           <br>
           <label class="big-label">Density</label>
           <input type="range" class="form-control-range" id="formControlRange">
@@ -195,7 +198,7 @@
             <label class="big-label payment">Payment Due</label>
             <div class="wrapper">
               <label class="dollar">$</label>
-              <input type="text" name="payment" class="payment-text" id="">
+              <input type="text" name="payment" class="payment-text" [value]="paymentDue">
             </div>
             <br>
             <img class="mx-auto d-block" height="200px" width="200px" (click)="startModalWithClass(start)" style="margin-top: 25px;"
@@ -255,47 +258,49 @@
   </div>
 </ng-template>
 
+
 <!--Start Modal -->
 <ng-template #start>
   <nav class="navbar-light bg-modal-color">
-    <span type="button" style="cursor: pointer;" class="pull-left" (click)="modalRef.hide()">
-      <span aria-hidden="true" class="return-arrow"><i class="fas fa-arrow-left"></i></span>
-    </span>
-    <p class="nav-title-color">Payment</p>
+      <span type="button" style="cursor: pointer;" class="pull-left" (click)="modalRef.hide()">  
+          <span aria-hidden="true" class="return-arrow"><i class="fas fa-arrow-left"></i></span>  
+      </span>
+      <p class="nav-title-color">Payment</p>
   </nav>
   <div class="modal-body">
-    <div class="container">
-      <div class="row justify-content-between">
-        <div class="col-4">
-          <p class="p-bold">Total Price: $ xxxxxx</p>
-        </div>
-        <div class="col-4">
-          <p class="p-bold">1 Page,mono,A4</p>
-        </div>
-      </div>
-      <hr>
-      <div class="row" style="justify-content: center;">
-        <p class="p-bold">Please choose pay option and press go button for pay, if you want to keep going.</p>
-      </div>
-      <div class="row">
-        <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
-          <img src="../../../assets/ui/Icon/Cash button.png" class="img-fluid" alt="" srcset="">
-        </div>
-        <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
-          <img src="../../../assets/ui/Icon/Card button.png" class="img-fluid" alt="" srcset="">
-        </div>
-        <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
-          <img src="../../../assets/ui/Icon/Card for copy button.png" class="img-fluid" alt="" srcset="">
-        </div>
-        <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
-          <img src="../../../assets/ui/Icon/membership button.png" class="img-fluid" alt="" srcset="">
-        </div>
-      </div>
+      <div class="container">
+          <div class="row justify-content-between">
+              <div class="col-4">
+                  <p class="p-bold">Total Price: $ {{paymentDue}}</p> 
+              </div>
+              <div class="col-4">
+                  <p class="p-bold">1 Page,mono,A4</p>
+              </div>
+            </div>
+          <hr>
+          <div class="row" style="justify-content: center;">
+              <p class="p-bold">Please choose pay option and press go button for pay, if you want to keep going.</p>
+          </div>
+          <div class="row">
+              <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
+                  <img src="../../../assets/ui/Icon/Cash button.png" class="img-fluid" alt="" srcset="">
+              </div>
+              <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
+                  <img src="../../../assets/ui/Icon/Card button.png" class="img-fluid" alt="" srcset="">
+              </div>
+              <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
+                  <img src="../../../assets/ui/Icon/Card for copy button.png" class="img-fluid" alt="" srcset="">
+              </div>
+              <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
+                  <img src="../../../assets/ui/Icon/membership button.png" class="img-fluid" alt="" srcset="">
+              </div>
+          </div>
+          
 
-    </div>
+      </div>
   </div>
   <div class="modal-footer" style="justify-content: center;">
-    <button type="button" class="simple-button" (click)="modalRef.hide()">Cancel</button>
-    <button type="button" class="simple-button">Go</button>
+      <button type="button" class="simple-button" (click)="modalRef.hide()">Cancel</button>
+      <button type="button" class="simple-button" (click)="scanUsbGo()">Go</button>
   </div>
 </ng-template>

@@ -127,9 +127,17 @@ input[type="radio"]:checked+.radio-custom-label {
   }
 
   .preview-image{
-    background-image: url(https://picsum.photos/250/200);
+    /* background-image: url(https://picsum.photos/250/200); */
     height: 275px; 
     width: 240px; 
     border: 2px solid #bdc3c7;
+  } 
+
+  .simple-button{
+    background-color: aliceblue;
+    border: 0px;
+    padding: 10px;
+    width:200px;
+    cursor: pointer;
   }
   

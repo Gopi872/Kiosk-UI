@@ -151,19 +151,19 @@
             <label class="small-label">Paper</label>
             <div class="row">
                 <div class="col-sm-12 col-md-2 col-lg-2 col-xl-2">
-                    <input id="A4" checked class="radio-custom" name="radio-group" type="radio">
+                    <input id="A4" checked class="radio-custom" name="radio-group" type="radio" (change)="onPaperChange('A4')">
                     <label for="A4" class="radio-custom-label">A4</label>
                 </div>
                 <div class="col-sm-12 col-md-2 col-lg-2 col-xl-2">
-                    <input id="A3" class="radio-custom" name="radio-group" type="radio">
+                    <input id="A3" class="radio-custom" name="radio-group" type="radio" (change)="onPaperChange('A3')">
                     <label for="A3" class="radio-custom-label">A3</label>
                 </div>
                 <div class="col-sm-12 col-md-2 col-lg-2 col-xl-2">
-                    <input id="B4" class="radio-custom" name="radio-group" type="radio">
+                    <input id="B4" class="radio-custom" name="radio-group" type="radio" (change)="onPaperChange('B4')">
                     <label for="B4" class="radio-custom-label">B4</label>
                 </div>
                 <div class="col-sm-12 col-md-2 col-lg-2 col-xl-2">
-                    <input id="B5" class="radio-custom" name="radio-group" type="radio">
+                    <input id="B5" class="radio-custom" name="radio-group" type="radio" (change)="onPaperChange('B5')">
                     <label for="B5" class="radio-custom-label">B5</label>
                 </div>
             </div>
@@ -171,11 +171,11 @@
             <label class="small-label">Slide</label>
             <div class="row">
                 <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5">
-                    <input id="single_slide" checked class="radio-custom" name="radio-group2" type="radio">
+                    <input id="single_slide" checked class="radio-custom" name="radio-group2" type="radio" (change)="onSlideChange('Single Slide')">
                     <label for="single_slide" class="radio-custom-label">Single Slide</label>
                 </div>
                 <div class="col-sm-12 col-md-5 col-lg-5 col-xl-5">
-                    <input id="double_slide" class="radio-custom" name="radio-group2" type="radio">
+                    <input id="double_slide" class="radio-custom" name="radio-group2" type="radio" (change)="onSlideChange('Double Slide')">
                     <label for="double_slide" class="radio-custom-label">Double Slide</label>
                 </div>
 
@@ -187,8 +187,8 @@
                 <div class="col-sm-12 col-md-6 col-xl-6 col-lg-6">
                     <!-- left -->
                     <label class="big-label">Preview</label>
-                    <div>
-                        <img class="preview-image" id="preview-image">
+                    <div *ngIf="selectedFaxImgs?.length > 0">
+                        <img #previewImg class="preview-image" src="http://storage.myepsoft.com:53335/kioskapi/{{selectedFaxImgs[0]}}" id="preview-image">
                     </div>
                     <br>
 
@@ -196,11 +196,11 @@
                         <label class="small-label">Direction</label>
                         <div class="row">
                             <div class="col-sm-12 col-lg-5 col-md-5 col-xl-5">
-                                <input id="vertical" checked class="radio-custom" name="radio-group3" type="radio">
+                                <input id="vertical" checked class="radio-custom" name="radio-group3" type="radio"(change)="onDirectionChange('Vertical')">
                                 <label for="vertical" class="radio-custom-label radio-pic vertical">Vertical</label>
                             </div>
                             <div class="col-sm-12 col-lg-5 col-md-5 col-xl-5">
-                                <input id="horizontal" class="radio-custom" name="radio-group3" type="radio">
+                                <input id="horizontal" class="radio-custom" name="radio-group3" type="radio"(change)="onDirectionChange('Horizontal')">
                                 <label for="horizontal"
                                     class="radio-custom-label radio-pic horizontal">Horizontal</label>
                             </div>
@@ -214,13 +214,59 @@
                     <label class="big-label payment">Payment Due</label>
                     <div class="wrapper">
                         <label class="dollar">$</label>
-                        <input type="text" name="payment" class="payment-text" id="">
+                        <input type="text" name="payment" class="payment-text" [value]="paymentDue">
                     </div>
                     <br>
-                    <img class="mx-auto d-block start" height="200px" width="200px"
+                    <img class="mx-auto d-block start" height="200px" width="200px"  (click)="startModalWithClass(start)"
                         src="../../../../assets/ui/customized/Start button.png" />
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!--Start Modal -->
+<ng-template #start>
+    <nav class="navbar-light bg-modal-color">
+        <span type="button" style="cursor: pointer;" class="pull-left" (click)="modalRef.hide()">  
+            <span aria-hidden="true" class="return-arrow"><i class="fas fa-arrow-left"></i></span>  
+        </span>
+        <p class="nav-title-color">Payment</p>
+    </nav>
+    <div class="modal-body">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-4">
+                    <p class="p-bold">Total Price: $ {{paymentDue}}</p> 
+                </div>
+                <div class="col-4">
+                    <p class="p-bold">1 Page,mono,A4</p>
+                </div>
+              </div>
+            <hr>
+            <div class="row" style="justify-content: center;">
+                <p class="p-bold">Please choose pay option and press go button for pay, if you want to keep going.</p>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
+                    <img src="../../../assets/ui/Icon/Cash button.png" class="img-fluid" alt="" srcset="">
+                </div>
+                <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
+                    <img src="../../../assets/ui/Icon/Card button.png" class="img-fluid" alt="" srcset="">
+                </div>
+                <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
+                    <img src="../../../assets/ui/Icon/Card for copy button.png" class="img-fluid" alt="" srcset="">
+                </div>
+                <div class="col-sm-12 col-xl-3 col-lg-3 col-md-3">
+                    <img src="../../../assets/ui/Icon/membership button.png" class="img-fluid" alt="" srcset="">
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+    <div class="modal-footer" style="justify-content: center;">
+        <button type="button" class="simple-button" (click)="modalRef.hide()">Cancel</button>
+        <button type="button" class="simple-button" (click)="scanUsbGo()">Go</button>
+    </div>
+</ng-template>
