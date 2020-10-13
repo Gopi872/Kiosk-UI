@@ -30,8 +30,10 @@ export class PrintPcComponent implements OnInit {
   pinNumber:any;
   targetPrinter:[];
   workType;
+  jobsCount;
   constructor( private modalService: BsModalService,private PrintserviceService:PrintserviceService,private commonService: CommonService) { 
     this.workType = 1201;
+    this.jobsCount = 0;
   }  
 
   ngOnInit() {
@@ -78,18 +80,22 @@ export class PrintPcComponent implements OnInit {
   }
 
   onCheckboxChange(event,list){
-    console.log("event",event.target.checked)
+    console.log("event",event.target.checked);
     if(event.target.checked){
+      this.jobsCount++;
+      this.paymentDue += (Number(list.attributes.copies) * Number(list.attributes.amount));
       this.listItem.push(list);
-      this.paymentDue= this.paymentDue + Number(list.showUnitMoney);
+      //this.paymentDue= this.paymentDue + Number(list.showUnitMoney);
     }else{
+      this.jobsCount--;
    let index=   this.listItem.findIndex((x)=>{
         return x.idx==list.idx;
       })
-      console.log({index})
+      console.log({index});
+      this.paymentDue -= (Number(list.attributes.copies) * Number(list.attributes.amount));
 
       this.listItem.splice(index,1);
-      this.paymentDue= this.paymentDue -Number(list.showUnitMoney);
+      //this.paymentDue= this.paymentDue -Number(list.showUnitMoney);
 
     }
     console.log(this.listItem);
