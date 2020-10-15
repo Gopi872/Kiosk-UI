@@ -34,7 +34,7 @@
                 &nbsp;
                 Cancel</button>
                 <a [routerLink]="['/copy']">
-                <button class="simple-button blue" type="submit" (click)="OnSelectImage()">
+                <button class="simple-button blue" type="submit" [disabled]="!isValid">
                 &nbsp;
                 Ok</button>
                 </a>

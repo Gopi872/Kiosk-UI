@@ -11,7 +11,6 @@ export class FaxserviceService {
   selectedFaxImgs;
   selectedPrinter;
   baseUrl = environment.baseUrl;
-  oldBaseUrl1 = environment.oldBaseUrl1;
 
   constructor(private httpClient: HttpClient, private commonService: CommonService) {
     this.selectedFaxImgs = [];
@@ -38,6 +37,6 @@ export class FaxserviceService {
         userId: 2
       };
        // tslint:disable-next-line: align
-       return this.httpClient.post(`${this.oldBaseUrl1}/log/fax/insert`, insertFaxJobReq);
+       return this.httpClient.post(`${this.baseUrl}/log/fax/insert`, insertFaxJobReq);
      }
 }

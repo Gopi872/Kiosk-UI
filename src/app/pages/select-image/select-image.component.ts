@@ -16,10 +16,15 @@ export class SelectImageComponent implements OnInit {
  public targetPrinter = [];
  listOfSelectedImages: any = [];
  selectedPrinter?: string;
+ isValid: boolean;
+
   constructor(private printserviceService: PrintserviceService, private router: Router,
               private copyserviceService: CopyserviceService, private commonService: CommonService) {
     this.copyserviceService.selectedCopyImgs = [];
     this.commonService.selectedPrinterObj = {};
+    this.selectedPrinter = 'Select Target Printer';
+    this.copyserviceService.selectedPrinter = this.selectedPrinter;
+    this.isValid = false;
   }
 
   ngOnInit() {
@@ -53,7 +58,7 @@ export class SelectImageComponent implements OnInit {
     } else {
       this.copyserviceService.selectedCopyImgs.splice(index, 1);
     }
-
+    this.isValid = this.checkFormValidyStatus();
   }
   getSeletedPrinter(value) {
     this.targetPrinter.forEach(printer => {
@@ -61,11 +66,12 @@ export class SelectImageComponent implements OnInit {
         this.commonService.selectedPrinterObj = printer;
       }
     });
+    this.selectedPrinter = value;
     this.copyserviceService.selectedPrinter = value;
+    this.isValid = this.checkFormValidyStatus();
   }
-  OnSelectImage() {
-    if (!(this.copyserviceService.selectedPrinter && this.copyserviceService.selectedCopyImgs.length > 0)) {
-      alert('Select all fields');
-    }
+
+  checkFormValidyStatus() {
+    return (this.copyserviceService.selectedPrinter !== '' && this.copyserviceService.selectedCopyImgs.length > 0) ? true : false;
   }
 }

@@ -14,7 +14,7 @@ export class CommonService {
   selectedPrinterObj: any;
 
   baseUrl = environment.baseUrl;
-  oldBaseUrl1 = environment.oldBaseUrl1;
+  oldBaseUrl = environment.oldBaseUrl;
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -34,12 +34,12 @@ export class CommonService {
   // Get All media cost service
 
   get_AllMediaCost_Service() {
-    return this.httpClient.get(`${this.oldBaseUrl1}/system/media/cost`);
+    return this.httpClient.get(`${this.baseUrl}/system/media/cost`);
   }
 
   // Payment Popup Go
   public paymentPopup(): Observable<any> {
-   return this.httpClient.get(`${this.oldBaseUrl1}/dashboard/status`);
+   return this.httpClient.get(`${this.baseUrl}/dashboard/status`);
  }
 
  // Save Images
@@ -59,7 +59,7 @@ export class CommonService {
     headers: new HttpHeaders({ 'Content-Type': 'multipart/form-data' })
   };
    // tslint:disable-next-line: align
-   return this.httpClient.post(`${this.baseUrl}/kioskapi/images/send`, this.getImageReq(data));
+   return this.httpClient.post(`${this.oldBaseUrl}/kioskapi/images/send`, this.getImageReq(data));
  }
 
  // Save Fax Images
@@ -76,7 +76,7 @@ export class CommonService {
     }
   };
    // tslint:disable-next-line: align
-   return this.httpClient.post(`${this.baseUrl}/kioskapi/fax/send`, data);
+   return this.httpClient.post(`${this.oldBaseUrl}/kioskapi/fax/send`, data);
  }
 
  getImageReq(data) {
@@ -101,7 +101,7 @@ export class CommonService {
   }
 
   // Save Images
-  public sendEmailToUser(attachments: any): Observable<any> {
+  public sendEmailToUser(attachments: any, sendMail: any): Observable<any> {
     const attachment = attachments.forEach(element => {
       element.filename = element.fileName;
     });
@@ -116,7 +116,7 @@ export class CommonService {
     }],
     mailSettings: {
       to: {
-        email: 'gopichand.nallagorla@gmail.com',
+        email: sendMail,
         enable: true
       }
     },
@@ -124,7 +124,7 @@ export class CommonService {
     attachments: attachment
    };
     // tslint:disable-next-line: align
-    return this.httpClient.post(`${this.baseUrl}/kioskapi/email/send`, emaildata);
+    return this.httpClient.post(`${this.oldBaseUrl}/kioskapi/email/send`, emaildata);
   }
 
   // convert img to Base64

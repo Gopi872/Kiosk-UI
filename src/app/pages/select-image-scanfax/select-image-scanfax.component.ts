@@ -12,12 +12,14 @@ export class SelectImageScanfaxComponent implements OnInit {
   public imageList = [];
   public targetPrinter = [];
   isValid: boolean;
+  faxSelect;
 
   constructor(private printserviceService: PrintserviceService,
               private faxserviceService: FaxserviceService, private commonService: CommonService) {
     this.faxserviceService.selectedFaxImgs = [];
     this.commonService.selectedPrinterObj = {};
-    this.faxserviceService.selectedPrinter = '';
+    this.faxSelect = 'Select Source Printer';
+    this.faxserviceService.selectedPrinter = this.faxSelect;
     this.isValid = false;
   }
 
@@ -63,6 +65,7 @@ export class SelectImageScanfaxComponent implements OnInit {
         this.commonService.selectedPrinterObj = printer;
       }
     });
+    this.faxSelect = value;
     this.faxserviceService.selectedPrinter = value;
     this.isValid = this.checkFormValidyStatus();
   }

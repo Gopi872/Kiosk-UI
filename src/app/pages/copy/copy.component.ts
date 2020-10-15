@@ -33,7 +33,7 @@ export class CopyComponent implements OnInit {
     this.imgWidth = '240px';
     this.imgBorder = '2px solid #bdc3c7';
     this.workType = 1202; // 1204
-    this.paymentDue = '';
+    this.paymentDue = 0;
     this.selectedPage = '';
     this.selectedOption = '';
     this.selectedProcess = '';
@@ -82,8 +82,8 @@ export class CopyComponent implements OnInit {
   isColor = true;
   isDocCopy = true;
 
-  quantity = '0';
-  i = 0;
+  quantity = '1 Page';
+  i = 1;
 
   startModalWithClass(start: TemplateRef<any>) {
       this.modalRef = this.modalService.show(
@@ -106,7 +106,7 @@ export class CopyComponent implements OnInit {
       return media.workType === this.workType && media.mediaSizeName === this.selectedPaper && media.color === this.selectedColorCode;
     });
     if (finalMediaType.length > 0) {
-      this.paymentDue = finalMediaType[0].cost;
+      this.paymentDue = finalMediaType[0].cost * this.i;
     }
   }
 
@@ -242,12 +242,7 @@ export class CopyComponent implements OnInit {
               console.log('res');
               if (res === 'Images sent successfully.') {
                 this.copyserviceService.insertCopyJob(insertReq).subscribe((resp: any) => {
-                  // tslint:disable-next-line: whitespace
-                  if(resp.data === 'Scan Log inserted successfully.') {
-                    this.commonService.sendEmailToUser(newImage).subscribe((respon: any) => {
-                      console.log(respon);
-                    });
-                  }
+                  console.log('resp');
                 });
               }
           } catch (error) {
@@ -270,7 +265,7 @@ export class CopyComponent implements OnInit {
     if (this.i !== 100) {
       this.i++;
       this.quantity = this.i + ' Page';
-      if (this.paymentDue !== '') {
+      if (this.paymentDue !== 0) {
         this.paymentDue = this.paymentDue * 2;
       }
     }
@@ -280,7 +275,7 @@ export class CopyComponent implements OnInit {
     if (this.i !== 1) {
       this.i--;
       this.quantity = this.i + ' Page';
-      if (this.paymentDue !== '') {
+      if (this.paymentDue !== 0) {
         this.paymentDue = this.paymentDue / 2;
       }
     }

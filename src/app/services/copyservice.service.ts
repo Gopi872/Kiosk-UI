@@ -11,7 +11,6 @@ export class CopyserviceService {
 
   baseUrl = environment.baseUrl;
   oldBaseUrl = environment.oldBaseUrl;
-  oldBaseUrl1 = environment.oldBaseUrl1;
   selectedCopyImgs;
   selectedPrinter: string;
 
@@ -22,17 +21,12 @@ export class CopyserviceService {
 
   //  Get Cost of All Media Types
    public getMediaTypes(): Observable<any> {
-    return this.http.get(`${this.oldBaseUrl1}/system/media/cost`);
+    return this.http.get(`${this.baseUrl}/system/media/cost`);
    }
 
    // Payment Popup Go
    public paymentPopup(): Observable<any> {
-    return this.http.get(`${this.oldBaseUrl1}/dashboard/status`);
-  }
-
-  // Save Images
-  public saveCopyImgs(data: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/kioskapi/images/send`, data);
+    return this.http.get(`${this.baseUrl}/dashboard/status`);
   }
 
   // Insert Copy Job
@@ -67,6 +61,6 @@ export class CopyserviceService {
       exceptionId: 1
     };
      // tslint:disable-next-line: align
-     return this.http.post(`${this.oldBaseUrl1}/log/out/insert`, insertCopyJobReq);
+     return this.http.post(`${this.baseUrl}/log/out/insert`, insertCopyJobReq);
    }
 }

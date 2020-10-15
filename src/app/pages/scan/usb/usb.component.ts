@@ -40,7 +40,7 @@ export class UsbComponent implements OnInit {
     this.imgWidth = '240px';
     this.imgBorder = '2px solid #bdc3c7';
     this.workType = 1204;
-    this.paymentDue = '';
+    this.paymentDue = 0;
     this.usbImgs = [];
   }
 
@@ -176,11 +176,7 @@ export class UsbComponent implements OnInit {
                 console.log('res');
                 if (res === 'Images sent successfully.') {
                   this.scanserviceService.insertScanJob().subscribe((resp: any) => {
-                    if (resp.data === 'Scan Log inserted successfully.') {
-                      this.commonService.sendEmailToUser(newImage).subscribe((respon: any) => {
-                        console.log(respon);
-                      });
-                    }
+                    console.log('resp');
                   });
                 }
             } catch (error) {

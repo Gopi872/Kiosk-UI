@@ -8,45 +8,54 @@ declare var $: any;
   styleUrls: ['./cloud.component.css']
 })
 export class CloudComponent implements OnInit {
-  modalRef: BsModalRef;  
-public targetPrinter =[];
-  constructor(private modalService: BsModalService,private PrintserviceService:PrintserviceService) { }
+  constructor(private modalService: BsModalService, private PrintserviceService: PrintserviceService) {
+    this.paymentDue = 0;
+   }
+  modalRef: BsModalRef;
+  paymentDue;
+public targetPrinter = [];
+  quantity: string = '1 Page';
+  i = 1;
 
   ngOnInit() {
    this.fetchTargetPrinter();
   }
 
-  startModalWithClass(start: TemplateRef<any>) {  
-    this.modalRef = this.modalService.show(  
-      start,  
-      Object.assign({}, { class: 'gray modal-lg' })  
-    );  
+  startModalWithClass(start: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(
+      start,
+      Object.assign({}, { class: 'gray modal-lg' })
+    );
 }
 
-  fetchTargetPrinter(){
+  fetchTargetPrinter() {
 
-    this.PrintserviceService.fetchTargetPrinter().subscribe((data:any)=>{
+    this.PrintserviceService.fetchTargetPrinter().subscribe((data: any) => {
       try {
-        console.log("data fetchTargetPrinter",data);
-        this.targetPrinter=data;
+        console.log('data fetchTargetPrinter', data);
+        this.targetPrinter = data;
       } catch (error) {
-        
+
       }
-    })
+    });
   }
-  quantity:string = '0';
-  i=0;
-  plus(){
-    if(this.i!=100){
+  plus() {
+    if (this.i !== 100) {
       this.i++;
-      this.quantity=this.i+ ' Page';
+      this.quantity = this.i + ' Page';
+      if (this.paymentDue !== 0) {
+        this.paymentDue = this.paymentDue * 2;
+      }
     }
   }
 
-  minus(){
-    if(this.i!=1){
+  minus() {
+    if (this.i !== 1) {
       this.i--;
-      this.quantity=this.i+ ' Page';
+      this.quantity = this.i + ' Page';
+      if (this.paymentDue !== 0) {
+        this.paymentDue = this.paymentDue / 2;
+      }
     }
   }
 

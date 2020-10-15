@@ -12,12 +12,14 @@ export class SelectImageScanusbComponent implements OnInit {
   public imagelist = [];
   public targetPrinter = [];
   isValid: boolean;
+  scanSelect;
 
   constructor(private printserviceService: PrintserviceService,
               private scanserviceService: ScanserviceService, private commonService: CommonService) {
     this.scanserviceService.selectedScanUsbImgs = [];
     this.commonService.selectedPrinterObj = {};
-    this.scanserviceService.selectedPrinter = '';
+    this.scanSelect = 'Select Source Printer';
+    this.scanserviceService.selectedPrinter = this.scanSelect;
     this.isValid = false;
   }
 
@@ -63,6 +65,7 @@ export class SelectImageScanusbComponent implements OnInit {
         this.commonService.selectedPrinterObj = printer;
       }
     });
+    this.scanSelect = value;
     this.scanserviceService.selectedPrinter = value;
     this.isValid = this.checkFormValidyStatus();
   }

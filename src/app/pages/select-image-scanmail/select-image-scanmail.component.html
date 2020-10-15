@@ -4,8 +4,8 @@
             <option>Dropdown (MFP 001) Source</option>
         </select>
          -->
-         <select class="form-control form-control-lg"  (change)="changePrinter($event.target.value)">
-            <option>Select Target Printer</option>
+         <select class="form-control form-control-lg" [(ngModel)]="scanSelect" (change)="changePrinter($event.target.value)">
+            <option>Select Source Printer</option>
             <option *ngFor="let opt of targetPrinter" [value]="opt.name">{{opt.name}}</option>
         </select>
     </div>

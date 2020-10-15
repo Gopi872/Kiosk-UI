@@ -35,7 +35,7 @@ export class FaxComponent implements OnInit {
     this.imgWidth = '240px';
     this.imgBorder = '2px solid #bdc3c7';
     this.workType = 1203;
-    this.paymentDue = '';
+    this.paymentDue = 0;
     this.faxImgs = [];
   }
 
@@ -51,9 +51,11 @@ export class FaxComponent implements OnInit {
 
   calculateDuePayment() {
     const finalMediaType: any = this.mediaTypes.filter((media: any) => {
-      return media.workType === this.workType && media.mediaSizeName === this.selectedPaper;
+      return media.workType === this.workType;
     });
-    this.paymentDue = finalMediaType[0].cost;
+    if (finalMediaType.length > 0) {
+      this.paymentDue = finalMediaType[0].cost;
+    }
   }
 
   getAllMediaTypes() {
@@ -78,7 +80,10 @@ export class FaxComponent implements OnInit {
       $('.num').click(function() {
           const num = $(this);
           const text = $.trim(num.find('.txt').clone().children().remove().end().text());
-          if (count < 11) {
+          if (text === 'C') {
+            $('#output').empty();
+            count = 0;
+          } else if (count < 11) {
             $('#output').append('<span>' + text.trim() + '</span>');
             count++;
           }
@@ -142,11 +147,7 @@ export class FaxComponent implements OnInit {
                 console.log('res');
                 if (res === 'Images sent successfully.') {
                   this.faxserviceService.insertFaxJob(reqData).subscribe((resp: any) => {
-                    if (resp.data === 'Scan Log inserted successfully.') {
-                      this.commonService.sendEmailToUser(newImage).subscribe((respon: any) => {
-                        console.log(respon);
-                      });
-                    }
+                    console.log('resp');
                   });
                 }
             } catch (error) {

@@ -35,13 +35,13 @@
             Document Copy
           </label>
         </div>
-        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+        <!-- <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
           <input id="id_card" class="radio-custom" [checked]="isIdCard"
                  name="radiodoc" [(ngModel)]="isIdCard"
                  (change)="CheckDocumentType('idcard',$event)"
                  type="radio" [value]="0">
           <label for="id_card" class="radio-custom-label">ID Card</label>
-        </div>
+        </div> -->
       </div>
       <div *ngIf="isDocCopy==true">
         <label class="big-label">Choose Print Option</label>
@@ -177,12 +177,12 @@
           <label class="big-label">Density</label>
           <input type="range" class="form-control-range" id="formControlRange">
           <br>
-          <div id="setting_div">
+          <!-- <div id="setting_div">
             <button class="simple-button settings" (click)="openModalWithClass(copy)">
               <i class="fas fa-cog"></i>&nbsp;
               Settings
             </button>
-          </div>
+          </div> -->
         </div>
         <div class="col-sm-12 col-md-6 col-xl-6 col-lg-6">
           <!-- right -->

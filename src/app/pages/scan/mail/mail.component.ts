@@ -29,6 +29,7 @@ export class MailComponent implements OnInit {
   paymentDue;
   modalRef: BsModalRef;
   @ViewChild('previewImg', {static: false}) previewImg: ElementRef<HTMLImageElement>;
+  fileName;
 
   constructor(private modalService: BsModalService, private scanserviceService: ScanserviceService, 
               private commonService: CommonService, private printserviceService: PrintserviceService) {
@@ -43,8 +44,9 @@ export class MailComponent implements OnInit {
     this.imgWidth = '240px';
     this.imgBorder = '2px solid #bdc3c7';
     this.workType = 1204;
-    this.paymentDue = '';
+    this.paymentDue = 0;
     this.mailImgs = [];
+    this.fileName = '';
   }
 
   startModalWithClass(start: TemplateRef<any>) {
@@ -68,7 +70,9 @@ export class MailComponent implements OnInit {
     const finalMediaType: any = this.mediaTypes.filter((media: any) => {
       return media.workType === this.workType && media.mediaSizeName === this.selectedPaper && media.color === this.selectedColorCode;
     });
-    this.paymentDue = finalMediaType[0].cost;
+    if (finalMediaType.length > 0) {
+      this.paymentDue = finalMediaType[0].cost;
+    }
   }
 
   getAllMediaTypes() {
@@ -187,7 +191,7 @@ export class MailComponent implements OnInit {
                   this.scanserviceService.insertScanJob().subscribe((resp: any) => {
                     // tslint:disable-next-line: whitespace
                     if(resp.data === 'Scan Log inserted successfully.') {
-                      this.commonService.sendEmailToUser(newImage).subscribe((respon: any) => {
+                      this.commonService.sendEmailToUser(newImage, this.mailServer.mainSendMail).subscribe((respon: any) => {
                         console.log(respon);
                       });
                     }

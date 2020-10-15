@@ -11,7 +11,6 @@ export class ScanserviceService {
 
   baseUrl = environment.baseUrl;
   oldBaseUrl = environment.oldBaseUrl;
-  oldBaseUrl1 = environment.oldBaseUrl1;
   selectedScanUsbImgs;
   selectedScanPcImgs;
   selectedScanMailImgs;
@@ -38,6 +37,6 @@ export class ScanserviceService {
       locationId: 0
     };
      // tslint:disable-next-line: align
-     return this.httpClient.post(`${this.oldBaseUrl1}/log/scan/insert`, insertScanJobReq);
+     return this.httpClient.post(`${this.baseUrl}/log/scan/insert`, insertScanJobReq);
    }
 }
