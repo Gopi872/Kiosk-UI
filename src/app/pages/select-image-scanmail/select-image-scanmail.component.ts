@@ -20,7 +20,7 @@ export class SelectImageScanmailComponent implements OnInit {
   this.commonService.selectedPrinterObj = {};
   this.scanSelect = 'Select Source Printer';
   this.scanserviceService.selectedPrinter = this.scanSelect;
-  this.isValid = false;
+  this.isValid = true;
 }
 
   ngOnInit() {

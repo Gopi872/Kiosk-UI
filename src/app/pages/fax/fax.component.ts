@@ -72,7 +72,6 @@ export class FaxComponent implements OnInit {
   ngOnInit() {
     this.createImages();
     this.getAllMediaTypes();
-
     let count = 0;
     // tslint:disable-next-line:only-arrow-functions
     $(document).ready(function() {
@@ -98,6 +97,38 @@ export class FaxComponent implements OnInit {
     });
   }
 
+  //login
+
+  cloudSendFax(file){
+    let data:any;
+    data={
+      process:'cloudSendFax',
+      machineid:'CNBKL7B9RC',
+      receivenb:'0323633478',
+      jobid:'20201020063022_CNBKL7B9RC'
+    }
+    console.log("ok",file);
+    this.faxserviceService.cloudSendFax(data,file).subscribe((payload:any)=>{
+      try {
+        console.log("payload",payload);
+      } catch (error) {
+        
+      }
+    })
+
+  }
+  
+  faxPaymentOk(){
+    let data:any;
+    this.faxserviceService.faxPaymentOk(data).subscribe((payload:any)=>{
+      try {
+        console.log("payload",payload);
+      } catch (error) {
+        
+      }
+    })
+
+  }
   // tslint:disable-next-line:adjacent-overload-signatures
   updateImage(rotate) {
     this.faxImgs.forEach(img => {
@@ -137,6 +168,7 @@ export class FaxComponent implements OnInit {
       pageFormat: this.selectedPaper,
       color: true
     };
+    
 
     this.commonService.paymentPopup().subscribe((response: any) => {
       try {
@@ -144,7 +176,14 @@ export class FaxComponent implements OnInit {
         if (response) {
           this.commonService.saveFaxImgs(this.selectedFaxImgs).subscribe( (res: any) => {
             try {
-                console.log('res');
+                console.log('res',res);
+                let fileName={
+                  tif: 'Http://storage.myepsoft.com:53335/kioskapi/'+res
+                }
+                var formData: any = new FormData();
+           formData.append("tif",  'Http://storage.myepsoft.com:53335/kioskapi/'+res);
+      
+                this.cloudSendFax(formData);
                 if (res === 'Images sent successfully.') {
                   this.faxserviceService.insertFaxJob(reqData).subscribe((resp: any) => {
                     console.log('resp');

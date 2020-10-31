@@ -2,6 +2,8 @@ import { Component, OnInit, TemplateRef, ViewChild, ElementRef } from '@angular/
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import {ScanserviceService} from '../../../services/scanservice.service';
 import { CommonService } from '../../../services/common.service';
+import {SaveImageService} from '../../../services/save-image.service';
+import {SaveImagePayload} from './save-image-payload';
 
 declare var $: any;
 @Component({
@@ -11,6 +13,7 @@ declare var $: any;
 })
 export class UsbComponent implements OnInit {
 
+  saveImagePayload: SaveImagePayload;
   selectedColor: string;
   selectedColorCode;
   selectedPaper: string;
@@ -28,7 +31,7 @@ export class UsbComponent implements OnInit {
   modalRef: BsModalRef;
   @ViewChild('previewImg', {static: false}) previewImg: ElementRef<HTMLImageElement>;
 
-  constructor(private modalService: BsModalService, private scanserviceService: ScanserviceService, private commonService: CommonService) {
+  constructor(private saveImageService: SaveImageService,private modalService: BsModalService, private scanserviceService: ScanserviceService, private commonService: CommonService) {
     this.selectedColor = 'Color';
     this.selectedColorCode = 1;
     this.selectedPaper = 'A4';
@@ -42,8 +45,23 @@ export class UsbComponent implements OnInit {
     this.workType = 1204;
     this.paymentDue = 0;
     this.usbImgs = [];
+
+    this.saveImagePayload = {
+      images:[],
+      targetFileType:''
+    }
+
+
   }
 
+ /* browseResult(event){
+    var fileselector = document.getElementById('fileselector');
+    console.log(fileselector);
+    console.log(event);
+    //document.getElementById("fakepath").value = fileselector.value;
+  }
+  */
+ 
   startModalWithClass(start: TemplateRef<any>) {
       this.modalRef = this.modalService.show(
         start,
@@ -166,8 +184,17 @@ export class UsbComponent implements OnInit {
       pageFormat: this.selectedPaper,
       color
     };
+    this.saveImagePayload.images= newImage;
+    this.saveImagePayload.targetFileType=this.selectedFile.toLowerCase();
+    console.log(this.saveImagePayload)
+    //console.log(JSON.stringify(this.saveImagePayload));
+    this.saveImageService.saveImage(this.saveImagePayload).subscribe(data => {
+      console.log('Success Response'+data);
+    }, error => {
+      console.log('Failure Response'+error);
+    })
 
-    this.commonService.paymentPopup().subscribe((response: any) => {
+    /*this.commonService.paymentPopup().subscribe((response: any) => {
       try {
         console.log('Response', response);
         if (response) {
@@ -186,7 +213,7 @@ export class UsbComponent implements OnInit {
         }
       } catch (error) {
       }
-    });
+    });*/
   }
 
 }

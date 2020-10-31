@@ -23,7 +23,7 @@
             <label class="big-label">File Name</label>
             <div class="row">
                 <div class="col-sm-6 col-lg-12 col-xl-12">
-                    <input type="text" placeholder="untitled_1242" [value]= 'fileName'>
+                    <input type="text" placeholder="untitled" [value]= 'fileName'>
                 </div>
             </div>
             <br>
@@ -82,7 +82,7 @@
                 </div>
             </div>
 
-            <label class="small-label">Resolution</label>
+            <!-- <label class="small-label">Resolution</label>
             <div class="row">
                 <div class="col-sm-12 col-lg-12 col-md-12">
                     <div class="row">
@@ -96,8 +96,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
+            </div> -->
+            <!-- <div class="row">
                 <div class="col-sm-12 col-lg-12 col-md-12">
                     <div class="row">
                         <div class="col-sm-12 col-lg-6 col-md-6 col-xl-6">
@@ -110,7 +110,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
         </div>
 
@@ -119,6 +119,7 @@
             <label class="big-label">Preview</label>
             <div class="row">
                 <div class="col-sm-6">
+                    <img #previewImg class="preview-image" src="assets/ui/10192020scan110322_3-5.jpg" id="preview-image" >
                     <div *ngIf="selectedScanMailImgs?.length > 0">
                         <img #previewImg class="preview-image" src="http://storage.myepsoft.com:53335/kioskapi/{{selectedScanMailImgs[0]}}" id="preview-image" >
                     </div>

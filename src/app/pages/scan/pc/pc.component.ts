@@ -2,6 +2,10 @@ import { Component, OnInit, TemplateRef, ViewChild, ElementRef } from '@angular/
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import {ScanserviceService} from '../../../services/scanservice.service';
 import { CommonService } from '../../../services/common.service';
+import {SaveImageService} from '../../../services/save-image.service';
+import {SaveImagePayload} from '../usb/save-image-payload';
+import { saveAs } from 'file-saver';
+//import { FileSaverService } from 'ngx-filesaver';
 
 declare var $: any;
 
@@ -12,13 +16,14 @@ declare var $: any;
   styles: ['body { background-color:white; }']
 })
 export class PcComponent implements OnInit {
-
+  saveImagePayload: SaveImagePayload;
   selectedColor: string;
   selectedColorCode;
   selectedPaper: string;
   selectedDirection: string;
   selectedResolution: string;
   selectedFile: string;
+  filePath: any;
   selectedScanPcImgs: [];
   imgHeight: string;
   imgWidth: string;
@@ -30,7 +35,8 @@ export class PcComponent implements OnInit {
   modalRef: BsModalRef;
   @ViewChild('previewImg', {static: false}) previewImg: ElementRef<HTMLImageElement>;
 
-  constructor(private modalService: BsModalService, private scanserviceService: ScanserviceService, private commonService: CommonService) {
+  constructor(private saveImageService: SaveImageService, private modalService: BsModalService, 
+              private scanserviceService: ScanserviceService, private commonService: CommonService) {
     this.selectedColor = 'Color';
     this.selectedColorCode = 1;
     this.selectedPaper = 'A4';
@@ -44,7 +50,18 @@ export class PcComponent implements OnInit {
     this.workType = 1204;
     this.paymentDue = 0;
     this.pcImgs = [];
+    this.saveImagePayload = {
+      images: [],
+      targetFileType: ''
+    };
+
   }
+
+  /*browseResult(event){
+    var fileselector = document.getElementById('fileselector');
+    console.log(fileselector.value);
+    document.getElementById("fakepath").value = fileselector.value;
+  }*/
 
   startModalWithClass(start: TemplateRef<any>) {
       this.modalRef = this.modalService.show(
@@ -59,7 +76,10 @@ export class PcComponent implements OnInit {
       const img = new Image();
       img.src = 'http://storage.myepsoft.com:53335/kioskapi/' + this.selectedScanPcImgs[i];
       this.pcImgs.push(img);
+      //this.fileSaverService.save('http://storage.myepsoft.com:53335/kioskapi/', '');
     }
+    // var FileSaver = require('file-saver');
+    // FileSaver.saveAs('http://storage.myepsoft.com:53335/kioskapi/' + this.selectedScanPcImgs[0], 'E:\img.pdf');
     console.log(this.pcImgs);
   }
 
@@ -169,8 +189,21 @@ export class PcComponent implements OnInit {
       pageFormat: this.selectedPaper,
       color
     };
+    this.saveImagePayload.images = newImage;
+    this.saveImagePayload.targetFileType = this.selectedFile.toLowerCase();
+    console.log(this.saveImagePayload);
+    this.saveImageService.saveImage(this.saveImagePayload).subscribe((response: any) => {
+      this.commonService.saveImgLocal(response[0]).subscribe( (pdf: any) => {
+        console.log('gopi');
+        saveAs(pdf, 'gopi.pdf');
+      });
+      // this.router.navigateByUrl('/');
+      console.log('Success Response', response);
+    }, error => {
+      console.log('Failure Response' + error);
+    });
 
-    this.commonService.paymentPopup().subscribe((response: any) => {
+    /*this.commonService.paymentPopup().subscribe((response: any) => {
       try {
         console.log('Response', response);
         if (response) {
@@ -189,7 +222,7 @@ export class PcComponent implements OnInit {
         }
       } catch (error) {
       }
-    });
+    });*/
   }
 
 }

@@ -125,5 +125,18 @@ export class PrintserviceService {
     return this.http.post(`${this.oldBaseUrl}/kioskapi/v1/transferFile`,data);
      
   }
+
+   /**
+      * loginFax
+      */
+     public loginCloud() {
+
+      let obj ={
+        "username": "windows-user" ,
+        "password" : "$2a$10$OWalHbmRBaYBlr6JC2uDnevRKX2d.XfQ0BholPgKbNLqgrZtHDeVm"
+    }
+    return this.http.post(`http://103.55.191.95/PrintPluinV2/printplugin/api/admin/auth/login`,obj);
+       
+     }
   
 }

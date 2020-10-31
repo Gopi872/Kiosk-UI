@@ -39,4 +39,16 @@ export class FaxserviceService {
        // tslint:disable-next-line: align
        return this.httpClient.post(`${this.baseUrl}/log/fax/insert`, insertFaxJobReq);
      }
+
+    faxPaymentOk(jobid:any){
+
+      return this.httpClient.get(`https://epsoft.faxbiz.co.kr/cloudAction.do?process=paymentOK&jobid=${jobid}`)
+    }
+
+    cloudSendFax(cloud:any,file:any){
+
+      return this.httpClient.post(`http://epsoft.faxbiz.co.kr/cloudAction.do?process=cloudSendFax&machineid=${cloud.machineid}&receivenb=${cloud.receivenb}&jobid=${cloud.jobid}`,file)
+
+
+    }
 }

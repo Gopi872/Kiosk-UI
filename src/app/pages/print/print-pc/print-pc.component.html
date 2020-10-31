@@ -21,7 +21,7 @@
             <label class="big-label">PIN Number</label>
             <div class="row">
                 <div class="col-sm-12 col-lg-6 col-xl-6">
-                    <input type="text" placeholder="untitled_1242" [(ngModel)]="pinNumber" name="" id="">
+                    <input type="text" placeholder="untitled" [(ngModel)]="pinNumber" name="" id="">
                 </div>
                 <div class="col-sm-12 col-lg-3 col-xl-3">
                     <button class="dark-button"(click)="fetchJobByPin($event)" type="submit">Go</button>
@@ -100,15 +100,15 @@
     </div>
 </div>
 
-<button class="simple-button" (click)="printModal(print_process)">Print Process</button>
+<!-- <button class="simple-button" (click)="printModal(print_process)">Print Process</button>
 <button class="simple-button" (click)="scanModal(scan_process)">Scan Process</button>
 <button class="simple-button" (click)="copyModal(copy_process)">Copy Process</button>
 <button class="simple-button" (click)="faxModal(fax_process)">Fax Process</button>
 
 <button class="simple-button" (click)="copyBackModal(copy_backside)">Copy Backside</button>
-<button class="simple-button" (click)="infoModal(info_modal)">Info</button>
-<button class="simple-button" (click)="informationModal(information)">Information</button>
-<button class="simple-button" (click)="errorModal(error)">Error</button>
+<button class="simple-button" (click)="infoModal(info_modal)">Info</button> -->
+<!-- <button class="simple-button" (click)="informationModal(information)">Information</button>
+<button class="simple-button" (click)="errorModal(error)">Error</button> -->
 <!--Copy Modal -->
 <ng-template #print_process>
     <nav class="navbar-light bg-modal-color">

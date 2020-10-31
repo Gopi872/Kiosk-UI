@@ -12,7 +12,7 @@
 
     <div class="container justify-content-center" style="margin-top: 50px;">
         <div class="row justify-content-center">
-            <div class="col-sm-2" *ngFor ="let image of imageList; let i=index;">
+            <div class="col-sm-2" *ngFor ="let image of imageList | slice:0:10; let i=index;">
                 <li>
                     <input type="checkbox" id="myCheckbox1{{i}}"  (click)="scanMailImgSelect(image)"/>
                     <label for="myCheckbox1{{i}}"><img src="http://storage.myepsoft.com:53335/kioskapi/{{image}}" /></label>

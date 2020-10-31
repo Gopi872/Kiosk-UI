@@ -100,9 +100,13 @@ export class CommonService {
     });
   }
 
+  saveImgLocal(url): Observable<any> {
+    return this.httpClient.get('http://storage.myepsoft.com:53335/kioskapi/' + url, { responseType: 'blob'});
+  }
+
   // Save Images
-  public sendEmailToUser(attachments: any, sendMail: any): Observable<any> {
-    const attachment = attachments.forEach(element => {
+  public sendEmailToUser(attachments: any, sendMail: any, sendTitle: any): Observable<any> {
+    attachments.forEach(element => {
       element.filename = element.fileName;
     });
     const emaildata = {
@@ -111,7 +115,7 @@ export class CommonService {
     },
     content: [{
       type: 'text/plain',
-      subject: 'Test Email to HB',
+      subject: sendTitle,
       value: 'Dear User, Thanks for your cooperation.'
     }],
     mailSettings: {
@@ -121,12 +125,11 @@ export class CommonService {
       }
     },
     // tslint:disable-next-line: object-literal-shorthand
-    attachments: attachment
+    attachments: attachments
    };
-    // tslint:disable-next-line: align
     return this.httpClient.post(`${this.oldBaseUrl}/kioskapi/email/send`, emaildata);
   }
-
+ 
   // convert img to Base64
   getDataUrl(img, imgPath) {
     // Create canvas
@@ -138,7 +141,7 @@ export class CommonService {
     img.crossOrigin = 'anonymous';
     // Draw the image
     ctx.drawImage(img, 0, 0);
-    const fileName = canvas.toDataURL('image/jpg');
+    const fileName = canvas.toDataURL('image/jpeg');
     const image = {
       fileName: imgPath,
       content: fileName.split(',')[1]
